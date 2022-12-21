@@ -89,9 +89,9 @@ export default function HeroSection() {
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
               <a
                 href="#"
-                className="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 bg-black text-white shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
               >
-                Log in
+                Try it now - no signup required!
               </a>
             </div>
           </nav>
@@ -103,7 +103,7 @@ export default function HeroSection() {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-8"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400"
+                      src="/lekhak-icon.png"
                       alt=""
                     />
                   </a>
@@ -137,7 +137,7 @@ export default function HeroSection() {
                       href="#"
                       className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                     >
-                      Log in
+                       Try it now - no signup required!
                     </a>
                   </div>
                 </div>
