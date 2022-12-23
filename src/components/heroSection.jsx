@@ -224,8 +224,8 @@ export default function HeroSection() {
                 <div className='mt-12 w-full flex flex-col justify-center hidden md:flex'>
                   <div className="flex justify-center shadow-lg rounded-lg max-w-xs m-auto">
                     <div>
-                      <div className="w-full h-[400px]">
-                      <Loading />
+                    <Loading />
+                    <div className="w-full h-[400px]">
                       <Canvas>
                         <Suspense fallback={null}>
                             <Model />
@@ -240,8 +240,8 @@ export default function HeroSection() {
                         </Suspense>
                       </Canvas>
                       </div>
-                      <div className="pt-4 px-6">
-                        <h5 className="text-gray-900 text-xl font-medium mb-2">Card title</h5>
+                      <div className="pt-2 px-6">
+                        <h5 className="text-gray-900 text-xl font-semibold mb-2">Card Title</h5>
                         <p className="text-gray-700 text-base mb-4">
                           Some quick example text to build on the card title and make up the bulk of the card's
                           content.
@@ -250,7 +250,8 @@ export default function HeroSection() {
                       <button type="button" className="inline-block px-6 py-2 w-full bg-teal-300 text-white font-medium text-sm leading-tight rounded-b-lg shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out">Shop now →</button>
                     </div>
                   </div>
-                  <div className='bg-white rounded-md p-6 w-[250px] h-[170px] drop-shadow-md mt-4 absolute bottom-40 -right-20 hidden lg:block'>
+                </div>
+                <div className='bg-white rounded-md p-6 w-[250px] h-[170px] drop-shadow-md mt-4 absolute bottom-40 -right-20 hidden lg:block'>
                     <Typewriter
                         onInit={(typewriter)=> {
                         typewriter  
@@ -267,10 +268,7 @@ export default function HeroSection() {
                         }
                         />
                         <button type="button" className="inline-block w-[150px] absolute inset-x-0 bottom-4 mx-auto justify-center px-6 py-2 bg-black text-white font-medium text-sm leading-tight rounded-lg shadow-md hover:opacity-75 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">Generate ✓</button> 
-                  </div>
-
-                </div>
-                
+                  </div>     
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
                 <svg
