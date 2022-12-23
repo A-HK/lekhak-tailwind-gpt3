@@ -1,15 +1,18 @@
-/* This example requires Tailwind CSS v3.0+ */
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, BoltIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import { useLoader, useFrame } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { Environment, OrbitControls} from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import * as THREE from 'three';
+
 
 import Typewriter from "typewriter-effect";
+
+import './heroSection.css';
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -28,6 +31,34 @@ const Model = () => {
     </>
   );
 };
+
+
+const Loading = () => {
+  const [finished, setFinished] = useState(false);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const url = './plant.glb';
+    THREE.DefaultLoadingManager.onLoad = () => setFinished(true);
+    THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) =>
+      setWidth((itemsLoaded / itemsTotal) * 200);
+  }, [])
+
+  // const props = useTransition(finished, null, {
+  //   from: { opacity: 1, width: 0 },
+  //   leave: { opacity: 0 },
+  //   update: { width },
+  // })
+
+  return (
+    !finished &&(
+      <div className='flex items-center justify-center w-full h-full'>
+        <div className="w-[200px] h-[50px] mx-auto mt-0 justify-center px-6 py-2 bg-white text-teal-400 border-2 border-teal-400 font-bold text-md leading-tight rounded-lg shadow-md"><p className="inline-block px-2 py-1">Generating </p><BoltIcon className="h-6 w-6 inline-block"/></div> 
+      </div>
+      
+    )
+  )
+}
 
 export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -89,7 +120,7 @@ export default function HeroSection() {
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
               <a
                 href="#"
-                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 bg-black text-white shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
               >
                 Try it now - no signup required!
               </a>
@@ -164,7 +195,7 @@ export default function HeroSection() {
                         </div>
                     </div>
                     <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                   Creating Tailwind UI components has never been easier.
+                   Creating Tailwind UI components has never been <span className='underline decoration-teal-400 underline-offset-8'>easier</span>
                     </h1>
                     <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
                     Lekhak generates and previews tailwind-style components for you, all from a simple text prompt. Harnesses the power of GPT-3 and OpenAI Codex.
@@ -194,6 +225,7 @@ export default function HeroSection() {
                   <div className="flex justify-center shadow-lg rounded-lg max-w-xs m-auto">
                     <div>
                       <div className="w-full h-[400px]">
+                      <Loading />
                       <Canvas>
                         <Suspense fallback={null}>
                             <Model />
