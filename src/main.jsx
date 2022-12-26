@@ -7,10 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./error-page";
-import Root from './routes/root';
-import Contact from "./routes/contact";
 import Example from './components/Example/example';
 import Playground from './components/Playground/playground';
+import UpdatesFAQs from './components/FAQSection/updatesFAQs';
+import Relevance from './components/Relevance/relevance';
 
 const router = createBrowserRouter([
   {
@@ -29,8 +29,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "contacts/:contactId",
-    element: <Contact />,
+    path: "/why-though",
+    element: <Relevance />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
