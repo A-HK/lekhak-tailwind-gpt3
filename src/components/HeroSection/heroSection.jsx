@@ -12,13 +12,11 @@ import * as THREE from 'three';
 
 import Typewriter from "typewriter-effect";
 
-import './heroSection.css';
-
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
   { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Roadmap', href: '#' },
 ]
 
 
@@ -44,16 +42,10 @@ const Loading = () => {
       setWidth((itemsLoaded / itemsTotal) * 200);
   }, [])
 
-  // const props = useTransition(finished, null, {
-  //   from: { opacity: 1, width: 0 },
-  //   leave: { opacity: 0 },
-  //   update: { width },
-  // })
-
   return (
     !finished &&(
       <div className='flex items-center justify-center w-full h-full'>
-        <div className="w-[200px] h-[50px] mx-auto mt-0 justify-center px-6 py-2 bg-white text-teal-400 border-2 border-teal-400 font-bold text-md leading-tight rounded-lg shadow-md"><p className="inline-block px-2 py-1">Generating </p><BoltIcon className="h-6 w-6 inline-block"/></div> 
+        <div className="w-[200px] mx-auto mt-0 justify-center px-6 py-2 bg-white text-teal-400 border-2 border-teal-400 font-bold text-md leading-tight rounded-lg shadow-md"><p className="inline-block px-2 py-1">Generating </p><BoltIcon className="h-6 w-6 inline-block"/></div> 
       </div>
       
     )
@@ -119,7 +111,7 @@ export default function HeroSection() {
             </div>
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
               <a
-                href="#"
+                href="/playground"
                 className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
               >
                 Try it now - no signup required!
@@ -131,10 +123,10 @@ export default function HeroSection() {
               <div className="flex h-9 items-center justify-between">
                 <div className="flex">
                   <a href="#" className="-m-1.5 p-1.5">
-                    <span className="sr-only">Your Company</span>
+                    <span className="sr-only">Lekhak.</span>
                     <img
                       className="h-8"
-                      src="/lekhak-icon.png"
+                      src="/lekhak-inverted.png"
                       alt=""
                     />
                   </a>
@@ -165,7 +157,7 @@ export default function HeroSection() {
                   </div>
                   <div className="py-6">
                     <a
-                      href="#"
+                      href="/playground"
                       className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                     >
                        Try it now - no signup required!
@@ -198,12 +190,12 @@ export default function HeroSection() {
                    Creating Tailwind UI components has never been <span className='underline decoration-teal-400 underline-offset-8'>easier</span>
                     </h1>
                     <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                    Lekhak generates and previews tailwind-style components for you, all from a simple text prompt. Harnesses the power of GPT-3 and OpenAI Codex.
+                    Lekhak generates and previews tailwind-styled components for you, all from a simple text prompt. Harnesses the power of GPT-3 and OpenAI Codex.
                     </p>
                     <div className="mt-8 flex gap-x-4 sm:justify-center">
                     <a
-                        href="#"
-                        className="inline-block rounded-lg bg-teal-400 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-400 hover:bg-teal-700 hover:ring-teal-700"
+                        href="/playground"
+                        className="inline-block rounded-lg bg-teal-400 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-400 hover:bg-teal-500 hover:ring-teal-500"
                     >
                         Get started
                         <span className="text-teal-200" aria-hidden="true">
@@ -224,8 +216,9 @@ export default function HeroSection() {
                 <div className='mt-12 w-full flex flex-col justify-center hidden md:flex'>
                   <div className="flex justify-center shadow-lg rounded-lg max-w-xs m-auto">
                     <div>
-                    <Loading />
+                    
                     <div className="w-full h-[400px]">
+                      <Loading />
                       <Canvas>
                         <Suspense fallback={null}>
                             <Model />
@@ -243,7 +236,7 @@ export default function HeroSection() {
                       <div className="pt-2 px-6">
                         <h5 className="text-gray-900 text-xl font-semibold mb-2">Card Title</h5>
                         <p className="text-gray-700 text-base mb-4">
-                          Some quick example text to build on the card title and make up the bulk of the card's
+                          Some placeholder text to build on the card title and make up the bulk of the card's
                           content.
                         </p>
                       </div>
