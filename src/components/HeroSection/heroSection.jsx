@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, BoltIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3BottomRightIcon, BoltIcon, XMarkIcon, ArrowTopRightOnSquareIcon,RocketLaunchIcon, PlayCircleIcon, ArrowRightCircleIcon, ArrowRightIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 
 import { useLoader } from "@react-three/fiber";
 import { Environment, OrbitControls} from "@react-three/drei";
@@ -9,13 +9,15 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from 'three';
 
-
 import Typewriter from "typewriter-effect";
 
+import './heroSection.css';
+
 const navigation = [
-  { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
-  { name: 'Updates and FAQs', href: '#' },
+  { name: 'Playground', href: '#' },
+  { name: 'How it works', href: '#' },
+  { name: 'Updates', href: '#' },
 ]
 
 
@@ -83,10 +85,10 @@ export default function HeroSection() {
           </defs>
         </svg>
       </div>
-      <div className="px-6 pt-6 lg:px-8">
+      <div className="sticky inset-x-0 overflow-hidden top-0 z-50 px-6 py-6 lg:px-8 bg-opacity-30 backdrop-filter backdrop-blur-lg">
         <div>
           <nav className="flex h-9 items-center justify-between" aria-label="Global">
-            <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
+            <div className="flex lg:min-w-0 lg:flex-auto" aria-label="Global">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="font-black text-lg">Lekhak.</span>
               </a>
@@ -98,22 +100,25 @@ export default function HeroSection() {
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <span className="sr-only">Open main menu</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <Bars3BottomRightIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
+            <div className="hidden lg:flex lg:min-w-0 lg:flex-auto lg:justify-center lg:gap-x-12">
               {navigation.map((item) => (
-                <a key={item.name} href={item.href} className="font-semibold text-gray-900 hover:text-gray-900">
+                <a key={item.name} href={item.href} className="font-semibold text-gray-900 hover:underline hover:underline-offset-8 hover:decoration-teal-300 hover:decoration-2">
                   {item.name}
                 </a>
               ))}
             </div>
-            <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
+            <div className="hidden lg:flex lg:min-w-0 lg:flex-auto lg:justify-end">
               <a
                 href="/playground"
-                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-black shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
               >
-                Try it now - no signup required!
+                Try It Now
+                <span className="px-1 text-white font-bold" aria-hidden="true">
+                  &rarr;
+                </span>
               </a>
             </div>
           </nav>
@@ -148,7 +153,7 @@ export default function HeroSection() {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                        className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300/10 hover:text-teal-400"
                       >
                         {item.name}
                       </a>
@@ -157,9 +162,9 @@ export default function HeroSection() {
                   <div className="py-6">
                     <a
                       href="/playground"
-                      className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
+                      className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-300/10 hover:text-teal-400"
                     >
-                       Try it now - no signup required!
+                       Try It Now 
                     </a>
                   </div>
                 </div>
@@ -172,19 +177,29 @@ export default function HeroSection() {
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-6xl py-2">
             <div>
+
+              <div className="pointer-card absolute right-0 top-0 hidden lg:inline">
+                <div className="content">
+                  <div className="arrow">
+                    <div className="curve"></div>
+                    <div className="point"></div>
+                  </div>
+                </div>  
+              </div>
+
               <div className='flex items-center'>
                 <div className='px-6'>
                     <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10">
                         <span className="text-gray-600">
                             Uhh.. can't I just use ChatGPT? {' '}
-                            <a href="/why-though" className="font-semibold text-teal-400">
+                            <a href="/why-though" className="font-semibold text-teal-400 hover:text-teal-500">
                             <span className="ml-2" aria-hidden="true" />
                             Read more <span aria-hidden="true">&rarr;</span>
                             </a>
                         </span>
                         </div>
-                    </div>
+                    </div>             
                     <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
                    Creating Tailwind UI components has never been <span className='underline decoration-teal-400 underline-offset-8'>easier</span>
                     </h1>
@@ -194,10 +209,10 @@ export default function HeroSection() {
                     <div className="mt-8 flex gap-x-4 sm:justify-center">
                     <a
                         href="/playground"
-                        className="inline-block rounded-lg bg-teal-400 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-400 hover:bg-teal-500 hover:ring-teal-500"
+                        className="inline-block rounded-lg bg-teal-400 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-md ring-1 ring-teal-400 hover:bg-teal-500 hover:ring-teal-500"
                     >
                         Get started
-                        <span className="text-teal-200" aria-hidden="true">
+                        <span className="text-white px-1 font-bold" aria-hidden="true">
                         &rarr;
                         </span>
                     </a>
@@ -205,12 +220,23 @@ export default function HeroSection() {
                         href="#"
                         className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
                     >
-                        Live demo
-                        <span className="text-gray-400" aria-hidden="true">
-                        &rarr;
+                        Watch video demo
+                        <span className="text-gray-400 font-bold px-1" aria-hidden="true">
+                        <PlayCircleIcon className='h-5 w-5 inline-block text-gray-900 text-bold'/>
                         </span>
                     </a>
                     </div>
+                    <div className="pointer-cta hidden">
+                <div className="content">
+                  <div className="arrow">
+                    <div className="curve"></div>
+                    <div className="point"></div>
+                  </div>
+                  <div className="content-text">
+                    <h1>Psst.. All you need is an OpenAI API key !</h1>
+                  </div>
+                </div>  
+              </div>
                 </div>
                 <div className='mt-12 w-full flex flex-col justify-center hidden md:flex'>
                   <div className="flex justify-center shadow-lg rounded-lg max-w-xs m-auto">
@@ -233,24 +259,24 @@ export default function HeroSection() {
                       </Canvas>
                       </div>
                       <div className="pt-2 px-6">
-                        <h5 className="text-gray-900 text-xl font-semibold mb-2">Card Title</h5>
+                        <h5 className="text-gray-900 text-xl font-semibold mb-2">Monstera Plant</h5>
                         <p className="text-gray-700 text-base mb-4">
-                          Some placeholder text to build on the card title and make up the bulk of the card's
-                          content.
+                        Native to Central and South America, the Monstera is a tropical perennial that's typically grown indoors.
                         </p>
                       </div>
-                      <button type="button" className="inline-block px-6 py-2 w-full bg-teal-300 text-white font-medium text-sm leading-tight rounded-b-lg shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out">Shop now →</button>
+                      <button type="button" className="inline-block px-6 py-2 w-full bg-teal-400 text-white font-medium text-sm leading-tight rounded-b-lg shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-400 active:shadow-lg transition duration-150 ease-in-out">Shop now →</button>
                     </div>
                   </div>
                 </div>
-                <div className='bg-white rounded-md p-6 w-[250px] h-[170px] drop-shadow-md mt-4 absolute bottom-40 -right-20 hidden lg:block'>
+                <div className='bg-white rounded-md py-6 px-8 w-[250px] h-[170px] drop-shadow-lg mt-4 absolute bottom-40 -right-20 hidden lg:block'>
                     <Typewriter
                         onInit={(typewriter)=> {
                         typewriter  
-                        .typeString("Create a Tailwind-styled card for a potted plant with title and body")
+                        .typeString("Create a Tailwind card for a potted plant with title, body and CTA button")
                         .pauseFor(1000)
                         .deleteAll()
-                        .typeString("Include a 3D model of a green plant")
+                        .typeString("Add a 3D model of a green plant above the title")
+                        .pauseFor(1000)
                         .start();
                         }}
                         options={{
@@ -259,7 +285,7 @@ export default function HeroSection() {
                         }
                         }
                         />
-                        <button type="button" className="inline-block w-[150px] absolute inset-x-0 bottom-4 mx-auto justify-center px-6 py-2 bg-black text-white font-medium text-sm leading-tight rounded-lg shadow-md hover:opacity-75 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">Generate ✓</button> 
+                        <button type="button" className="inline-block w-[150px] absolute inset-x-0 bottom-4 mx-auto justify-center px-6 py-2.5 bg-black text-white font-medium text-sm leading-tight rounded-lg shadow-sm hover:drop-shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">Generate <span className='px-1'>✓</span></button> 
                   </div>     
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

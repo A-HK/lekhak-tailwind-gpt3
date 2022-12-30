@@ -23,8 +23,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
+    "react-use": "^17.4.0",
     "three": "^0.147.0",
-    "typewriter-effect": "^2.19.0"
+    "typewriter-effect": "^2.19.0",
+    "chart.js": "^3.8.0",
+    "chartjs-adapter-moment": "^1.0.0",
+    "moment": "^2.29.4",
+    "react-flatpickr": "^3.10.13",
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

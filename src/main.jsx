@@ -11,6 +11,7 @@ import Example from './components/Example/example';
 import Playground from './components/Playground/playground';
 import UpdatesFAQs from './components/FAQSection/updatesFAQs';
 import Relevance from './components/Relevance/relevance';
+import Dashboard from './components/GeneratedComponents/Dashboard/pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,12 @@ const router = createBrowserRouter([
   {
     path: "/why-though",
     element: <Relevance />,
+    errorElement: <ErrorPage />,
+  },
+  ,
+  {
+    path: "/examples/dashboard",
+    element: <Dashboard />,
     errorElement: <ErrorPage />,
   },
 ]);
