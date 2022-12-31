@@ -7,11 +7,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./error-page";
-import Example from './components/Example/example';
-import Playground from './components/Playground/playground';
-import UpdatesFAQs from './components/FAQSection/updatesFAQs';
-import Relevance from './components/Relevance/relevance';
-import Dashboard from './components/GeneratedComponents/Dashboard/pages/Dashboard';
+import Example from './components/WebsiteComponents/Example/example';
+import Playground from './components/WebsiteComponents/Playground/playground';
+import UpdatesFAQs from './components/WebsiteComponents/FAQSection/updatesFAQs';
+import Relevance from './components/WebsiteComponents/Relevance/relevance';
+import Dashboard from './components/LekhakComponentTemplates/Dashboard/pages/Dashboard';
 
 const router = createBrowserRouter([
   {
