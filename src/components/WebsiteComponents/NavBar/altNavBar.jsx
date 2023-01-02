@@ -9,57 +9,60 @@ import {
   CursorArrowRaysIcon,
   LifebuoyIcon,
   PhoneIcon,
-  PlayIcon,
+  PlayCircleIcon,
   ShieldCheckIcon,
   Squares2X2Icon,
   XMarkIcon,
   RocketLaunchIcon,
+  FlagIcon,
   CheckCircleIcon,
   PuzzlePieceIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
+/* Get a better understanding of where your traffic is coming from. */
 const components = [
   {
     name: 'Hero Section',
-    description: 'Get a better understanding of where your traffic is coming from.',
+    description: 'Make the first impression of your website count by tailoring the hero section to your needs.',
     href: '#',
     icon: RocketLaunchIcon,
   },
   {
     name: 'Dashboard',
-    description: 'Speak directly to your customers in a more meaningful way.',
+    description: 'Present daily statistics, updates and tools in a more impactful manner.',
     href: '#',
     icon: ChartBarIcon,
   },
   {
     name: 'Modals',
-    description: 'Build strategic funnels that will drive your customers to convert',
+    description: 'Bring important information front and center with modals and popups.',
     href: '#',
     icon: ArrowPathIcon,
   },
   {
     name: 'Cards',
-    description: "Connect with third-party tools that you're already using.",
+    description: "Showcase your content and actions with the building blocks of user interfaces.",
     href: '#',
     icon: Squares2X2Icon,
   },
   { 
     name: 'Features Section', 
-    description: "Your customers' data will be safe and secure.", 
+    description: "Highlight the standout characteristics and capabilities of your creation.", 
     href: '#', 
     icon: PuzzlePieceIcon ,
   },
   {
     name: 'Notifications',
-    description: 'Build strategic funnels that will drive your customers to convert',
+    description: 'Keep users informed and up-to-date, ensuring they never miss important updates or events.',
     href: '#',
     icon: CheckCircleIcon,
   },
 ]
 const callsToAction = [
-  { name: 'Watch Demo', href: '#', icon: PlayIcon },
-  { name: 'Contact Sales', href: '#', icon: PhoneIcon },
+  { name: 'Watch Demo', href: '#', icon: PlayCircleIcon, description: `Learn how to navigate Lekhak to get the most out of it.` },
+  { name: 'Request Feature', href: '#', icon: FlagIcon, description: `Want to see a specific type of component that's not already here? Ask and you shall receive.`  },
+  { name: 'Share Feedback', href: '#', icon: PlayCircleIcon, description: `Complaints, compliments or suggestions? Feel free to leave them here.` },
 ]
 const resources = [
   {
@@ -83,9 +86,7 @@ const resources = [
   { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
 ]
 const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
+  { id: 1, name: 'How to set up Lekhak on your local dev environment', href: '#' },
 ]
 
 function classNames(...classes) {
@@ -110,6 +111,7 @@ export default function AltNavBar() {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+         
             <Popover className="relative">
               {({ open }) => (
                 <>
@@ -119,7 +121,7 @@ export default function AltNavBar() {
                       'group inline-flex items-center rounded-md text-base font-medium hover:text-black focus:outline-none'
                     )}
                   >
-                    <span>Components</span>
+                    <span>Create component</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? 'text-gray-600' : 'text-gray-900',
@@ -156,17 +158,17 @@ export default function AltNavBar() {
                           ))}
                         </div>
                         <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                          {callsToAction.map((item) => (
+                          {/* {callsToAction.map((item) => (
                             <div key={item.name} className="flow-root">
                               <a
                                 href={item.href}
-                                className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="-m-3 flex items-center rounded-md p-3 text-sm font-medium text-gray-800 hover:bg-gray-100"
                               >
-                                <item.icon className="h-6 w-6 flex-shrink-0 text-gray-900" aria-hidden="true" />
+                                <item.icon className="h-6 w-6 flex-shrink-0 text-gray-500" aria-hidden="true" />
                                 <span className="ml-3">{item.name}</span>
                               </a>
                             </div>
-                          ))}
+                          ))} */}
                         </div>
                       </div>
                     </Popover.Panel>
@@ -182,13 +184,13 @@ export default function AltNavBar() {
               How it works
             </a>
 
-            {/* <Popover className="relative">
+            <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
                       open ? 'text-black' : 'text-black',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-black focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
+                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-black focus:outline-none'
                     )}
                   >
                     <span>More</span>
@@ -210,10 +212,10 @@ export default function AltNavBar() {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
+                    <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform px-2 sm:px-0">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
+                          {callsToAction.map((item) => (
                             <a
                               key={item.name}
                               href={item.href}
@@ -232,7 +234,7 @@ export default function AltNavBar() {
                             <h3 className="text-base font-medium text-black">Recent Posts</h3>
                             <ul role="list" className="mt-4 space-y-4">
                               {recentPosts.map((post) => (
-                                <li key={post.id} className="truncate text-base">
+                                <li key={post.id} className="text-base">
                                   <a href={post.href} className="font-medium text-black hover:text-gray-700">
                                     {post.name}
                                   </a>
@@ -252,7 +254,7 @@ export default function AltNavBar() {
                   </Transition>
                 </>
               )}
-            </Popover> */}
+            </Popover>
           </Popover.Group>
           <div className="hidden lg:flex lg:min-w-0 lg:flex-auto lg:justify-end">
               <a

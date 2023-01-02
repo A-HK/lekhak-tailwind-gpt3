@@ -1,9 +1,15 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+::selection{
+    background-color: #2dd4b3b5;
+    color: white;
+}
 
 html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+@tailwind components;
+@tailwind utilities;

@@ -12,7 +12,7 @@ export default function ErrorPage() {
         {/* <p>
           Error : {error.statusText || error.message}
         </p> */}
-         <div className="mt-4">
+            <div className="mt-4">
               <a
                 href="/"
                 className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-black shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
