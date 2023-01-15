@@ -7,4 +7,6 @@ Generating Tailwind UI components with the help of OpenAI Codex and GPT-3
 #### Playground
 ![image](https://user-images.githubusercontent.com/73497800/212181697-325b38f5-61ee-4045-ac98-bab2508968e6.png)
 
+#### Component Example
+![Screenshot (245)](https://user-images.githubusercontent.com/73497800/212559617-174c15a4-2fde-4891-83b4-c9c2c91f8391.png)
 
