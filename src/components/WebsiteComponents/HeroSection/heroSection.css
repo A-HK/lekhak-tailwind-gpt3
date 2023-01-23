@@ -69,19 +69,17 @@
 .arrow .point:before {
     top: -11px;
     left: -11px;
-    transform:rotate(-74deg);
     -webkit-transform:rotate(-74deg);
     -moz-transform:rotate(-74deg);
-    -ms-transform: rotate(-74deg);
+    -ms-transform: rotate(-74deg);  
+    transform:rotate(-74deg);
 }
   
 .arrow .point:after {
     top: -20px;
     left: 5px;
-    transform:rotate(12deg);
     -webkit-transform: rotate(12deg);
     -moz-transform:rotate(12deg);
     -ms-transform: rotate(12deg);
+    transform:rotate(12deg);
 }
-
- 

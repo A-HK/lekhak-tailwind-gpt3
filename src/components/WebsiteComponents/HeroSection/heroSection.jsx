@@ -47,10 +47,9 @@ const Loading = () => {
 }
 
 export default function HeroSection() {
- 
 
   return (
-    <div className="isolate bg-white">
+    <div id="hero" className="hero isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"

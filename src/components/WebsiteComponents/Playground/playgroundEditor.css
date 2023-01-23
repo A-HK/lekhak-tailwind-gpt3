@@ -1,0 +1,95 @@
+/* ===== SandpackProvider ============================= */
+/* Overall wrapper */
+div.sp-wrapper {}
+
+/* ===== SandpackCodeEditor =========================== */
+/* Tab bar */
+div.sp-tabs {
+}
+
+/* Scrollable tab container */
+div.sp-tabs-scrollable-container {}
+
+/* Individual tab */
+button.sp-tab-button {}
+
+/* Active tab */
+button.sp-tab-button[data-active=true] {}
+
+/* Wrapper for components */
+div.sp-stack {}
+
+/* Code editor wrapper */
+div.sp-code-editor {}
+
+/* Background for code editor */
+div.cm-editor {}
+
+/* Code editor content */
+div.sp-code-editor div.cm-content {}
+
+/* Line of code */
+div.sp-code-editor div.cm-line {}
+
+/* Active line of code */
+div.sp-code-editor div.cm-line.cm-activeLine {}
+
+/* Gutter background */
+div.sp-code-editor div.cm-gutters {}
+
+/* Line numbers */
+div.sp-code-editor div.cm-gutter.cm-lineNumbers {}
+
+/* ===== SandpackPreview ============================== */
+/* Preview container */
+div.sp-preview-container {
+}
+
+/* Preview iframe */
+iframe.sp-preview-iframe {
+}
+
+/* Wrapper for buttons in preview container */
+div.sp-preview-actions {}
+
+/* Wrapper for loading icon in preview container */
+div.sp-loading {
+}
+
+/* Open in Sandbox button, appears while loading */
+button.sp-icon-standalone {}
+
+/* Error box */
+div.sp-error {}
+
+/* Error text */
+div.sp-error-message {
+  white-space: pre-wrap;
+}
+
+/* Firefox */
+#playground-editor {
+    --primary-editor: #d45c2d;
+    --secondary-editor: #fff;
+  }
+
+  #playground-editor {
+    scrollbar-width: 10px;
+    scrollbar-color: var(--secondary-editor) var(--primary-editor);
+  }
+  
+  /* Chrome, Edge, and Safari */
+  #playground-editor::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  #playground-editor::-webkit-scrollbar-track {
+    background: var(--secondary-editor);
+
+  }
+  
+  #playground-editor::-webkit-scrollbar-thumb {
+    background-color: var(--primary-editor);
+    border-radius: 14px;
+    border: 3px solid var(--primary-editor);
+  }

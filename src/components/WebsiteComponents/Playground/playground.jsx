@@ -1,25 +1,29 @@
 import { useState, useEffect } from "react";
-import AltNavBar from "../NavBar/altNavBar";
+
 import {
-  BoltIcon,
-  CodeBracketIcon,
+  PlusCircleIcon,
 } from '@heroicons/react/24/outline';
 
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
+import ModalForm from "./playgroundModalForm";
+import PlaygroundEditor from "./playgroundEditor";
 
 import './playground.css';
-import EmptyState from "../EmptyState/emptyState";
 
 function Playground() {
  // const [data, setData] = useState(null);
+  const [showModalForm, setShowModalForm] = useState(false);
   const [componentInput, setComponentInput] = useState("");
   const [result, setResult] = useState({
     theme: "",
     component: [{}],
   })
+  const [componentRequested, setComponentRequested] = useState(false);
 
   async function onSubmit(event){
         event.preventDefault();
+        setComponentRequested(true);
         console.log(componentInput);
         const response = await fetch("http://localhost:3001/api", {
             method: "POST",
@@ -36,7 +40,7 @@ function Playground() {
             theme: objResult.theme,
             component: objResult.component,
         });
-
+        
         setComponentInput("");
     }
 
@@ -80,10 +84,11 @@ function Playground() {
   
   return (
     <>
+    <HelmetProvider>
      <Helmet>
         <title>Lekhak | Playground</title>
       </Helmet>
-    <div className="playground h-screen px-10 isolate bg-white grid grid-rows-5">
+    <div className="playground h-screen px-10 isolate bg-white grid grid-rows-7">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -111,45 +116,63 @@ function Playground() {
           </defs>
         </svg>
       </div>
-
+      {/* <AltNavBar /> */}
       <header className="playground-header font-bold text-2xl py-4 px-6 flex items-center justify-between row-span-1">
         <div className="flex items-center justify-start">
           {/* <img className="h-12 w-12 inline-block p-2" src="/lekhak-icon.png" alt=""/> */}
-          <h1 className="inline-block p-2 text-3xl">Playground <sup className="font-semibold bg-teal-400 text-xs px-2 text-white rounded-lg">beta</sup></h1>
+          <h1 className="inline-block p-2 text-3xl font-black tracking-wide">Playground <sup className="font-semibold bg-teal-400 text-xs px-2 text-white rounded-lg">beta</sup></h1>
         </div>
+        <div className="flex flex-row items-center justify-end">
+          <div>
+            <button
+              type="button"
+              className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-gray-800 shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+              onClick={()=>{setShowModalForm(true)}}
+            >
+                Create new component
+          
+              <PlusCircleIcon className="h-5 w-5 ml-1.5 mb-0.5 inline-block text-white font-bold"/>
         
-        <div>
-          <a
-            href="/"
-            className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-black shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
-          >
-            Back to Home
-            <span className="px-1 text-white font-bold" aria-hidden="true">
-              &rarr;
-            </span>
-          </a>
+            </button>
+            </div>
+            <div>
+            <a
+              href="/"
+              className="inline-block px-6 py-2 text-sm font-semibold leading-6 underline underline-offset-4 decoration-1"
+            >
+              Back to Home
+              {/* <span className="px-1 font-bold" aria-hidden="true">
+                &rarr;
+              </span> */}
+            </a>
+            </div>
           </div>
       </header>
-      <div className="row-span-4 flex items-center justify-center">
-          <div id="left-side-panel" className="p-6 w-1/3 h-full">
-            <form onSubmit={onSubmit} className="w-full">
-              <h2 className="py-3 font-semibold text-gray-800">Enter your prompt here</h2>
-              <textarea
-                type="text"
-                name="component"
-                placeholder="Create a grid of vertical cards for multiple food items with images..."
-                className="p-4 h-48 w-full border border-2 border-gray-200 rounded-lg"
-                onChange={(e)=>{setComponentInput(e.target.value)}}
-              />
-              <input type="submit" value="Generate Component &rarr;" className="inline-block rounded-lg px-3 py-2 my-4 max-auto font-semibold leading-6 text-white bg-teal-400 shadow-md ring-1 ring-teal-900/10 hover:ring-gray-900/20" />
-      
-            </form>
-          </div>
-          <div id="right-side-panel" className="p-10 w-2/3 h-full">
+      <div className="row-span-6 flex items-center justify-center">
+        <ModalForm 
+          showModalForm={showModalForm}
+          setShowModalForm={setShowModalForm}
+        />
+          {/* <div id="left-side-panel" className="absolute p-6 w-full">
+          <PlaygroundForm />
+          </div> */}
+          <div id="right-side-panel" className="p-6 w-full h-full">
+
+              <PlaygroundEditor />
             {/* <CodeBracketIcon className="h-8 w-8 text-white bg-gray-800 p-2 my-3 rounded-lg font-bold"/> */}
-            <div id="output" className="w-full h-full rounded-xl flex items-center justify-center">
-              <EmptyState className="h-full"/>
-            </div>
+            {/* <div id="output" className="w-full h-full rounded-xl flex items-center justify-center border-2 border-gray-300 border-dashed hover:border-teal-400">
+              {
+                !componentRequested
+                ? (
+                    <EmptyState className="h-full"/>
+                )
+                :(
+                    <ModalTemplate />
+                )
+              }
+              
+              {console.log(componentRequested)}
+            </div> */}
           </div>
           {/* <p>{!result ? "Loading..." : result.theme}</p> */}
           <div>{result.theme}</div>
@@ -157,6 +180,7 @@ function Playground() {
           {(result.component && result.component.content && result.component.content[0]) ? <div>result.component.content[0].title</div> : <div></div>}
       </div>
     </div>
+    </HelmetProvider>
     </>
   );
 }

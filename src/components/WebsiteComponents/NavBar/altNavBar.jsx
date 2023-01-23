@@ -16,11 +16,12 @@ import {
   RocketLaunchIcon,
   FlagIcon,
   CheckCircleIcon,
-  PuzzlePieceIcon
+  PuzzlePieceIcon,
+  BugAntIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-/* Get a better understanding of where your traffic is coming from. */
+
 const components = [
   {
     name: 'Hero Section',
@@ -62,29 +63,9 @@ const components = [
 const callsToAction = [
   { name: 'Watch Demo', href: '#', icon: PlayCircleIcon, description: `Learn how to navigate Lekhak to get the most out of it.` },
   { name: 'Request Feature', href: '#', icon: FlagIcon, description: `Want to see a specific type of component that's not already here? Ask and you shall receive.`  },
-  { name: 'Share Feedback', href: '#', icon: PlayCircleIcon, description: `Complaints, compliments or suggestions? Feel free to leave them here.` },
+  { name: 'Report Bug', href: '#', icon: BugAntIcon, description: `Complaints, compliments or suggestions? Feel free to leave your feedback here.` },
 ]
-const resources = [
-  {
-    name: 'Help Center',
-    description: 'Get all of your questions answered in our forums or contact support.',
-    href: '#',
-    icon: LifebuoyIcon,
-  },
-  {
-    name: 'Guides',
-    description: 'Learn how to maximize our platform to get the most out of it.',
-    href: '#',
-    icon: BookmarkSquareIcon,
-  },
-  {
-    name: 'Events',
-    description: 'See what meet-ups and other events we might be planning near you.',
-    href: '#',
-    icon: CalendarIcon,
-  },
-  { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
-]
+
 const recentPosts = [
   { id: 1, name: 'How to set up Lekhak on your local dev environment', href: '#' },
 ]
@@ -99,7 +80,7 @@ export default function AltNavBar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <a href="/">
               <span className="sr-only">Lekhak.</span>
               <span className="font-black text-2xl tracking-wide inline-block">Lekhak.</span>
             </a>
@@ -121,11 +102,11 @@ export default function AltNavBar() {
                       'group inline-flex items-center rounded-md text-base font-medium hover:text-black focus:outline-none'
                     )}
                   >
-                    <span>Create component</span>
+                    <span>Components</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-900',
-                        'ml-2 h-5 w-5 group-hover:text-gray-900'
+                        open ? 'text-gray-900' : 'text-gray-600',
+                        'ml-1 mt-1 h-5 w-5 group-hover:text-gray-900'
                       )}
                       aria-hidden="true"
                     />
@@ -176,10 +157,10 @@ export default function AltNavBar() {
                 </>
               )}
             </Popover>
-
+{/* 
             <a href="/playground" className="text-base font-medium text-gray-900 hover:text-black">
               Playground
-            </a>
+            </a> */}
             <a href="#" className="text-base font-medium text-gray-900 hover:text-black">
               How it works
             </a>
@@ -190,14 +171,14 @@ export default function AltNavBar() {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-black' : 'text-black',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-black focus:outline-none'
+                      'group inline-flex items-center rounded-md text-base font-medium hover:text-black focus:outline-none'
                     )}
                   >
                     <span>More</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-black',
-                        'ml-2 h-5 w-5 group-hover:text-black'
+                        open ? 'text-gray-900' : 'text-gray-600',
+                        'ml-1 mt-1 h-5 w-5 group-hover:text-gray-900'
                       )}
                       aria-hidden="true"
                     />

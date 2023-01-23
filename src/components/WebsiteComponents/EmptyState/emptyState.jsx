@@ -9,7 +9,7 @@ export default function EmptyState() {
         <>
       <div
         type="button"
-        className="flex flex-col block items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-teal-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        className="flex flex-col block items-center justify-center w-full h-full rounded-lg p-12 text-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
       >
         <SquaresPlusIcon className="h-12 w-12 text-gray-300 inline-block text-light"/>
         <span className="mt-2 inline-block text-md font-medium text-gray-900">No component to display yet</span>
@@ -19,4 +19,4 @@ export default function EmptyState() {
       
       </>
     )
-  }
+}

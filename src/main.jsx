@@ -9,7 +9,6 @@ import {
 import ErrorPage from "./error-page";
 import Example from './components/WebsiteComponents/Example/example';
 import Playground from './components/WebsiteComponents/Playground/playground';
-import UpdatesFAQs from './components/WebsiteComponents/FAQSection/updatesFAQs';
 import Relevance from './components/WebsiteComponents/Relevance/relevance';
 import Dashboard from './components/LekhakComponentTemplates/Dashboard/pages/Dashboard';
 
