@@ -1,0 +1,15 @@
+{
+    "theme": "travel destination", 
+    "color": "teal",
+    "component" : {
+        "type": "SingleHorizontalCard",  
+        "image": true, 
+        "content":[
+            {
+                "title":"Udaipur", 
+                "body":"The city of lakes, Udaipur is a lovely land around the azure water lakes, hemmed in by the lush hills of the Aravalis.",
+                "callsToAction" : ["View", "See Ratings"]
+            }
+        ]
+    }
+}

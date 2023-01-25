@@ -7,7 +7,7 @@ export default function ModalTemplate() {
 
   return (
     <div className="p-12 my-12">
-    <button onClick={() => setOpen(true)}  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-400 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm">Open Modal</button>
+    <button onClick={() => setOpen(true)}  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm">Open Modal</button>
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setOpen}>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -40,7 +40,7 @@ export default function ModalTemplate() {
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close</span>

@@ -1,13 +1,10 @@
-import { useState, useEffect} from 'react';
-import { Dialog } from '@headlessui/react';
-import { Bars3BottomRightIcon, BoltIcon, XMarkIcon, ArrowTopRightOnSquareIcon,RocketLaunchIcon, PlayCircleIcon, ArrowRightCircleIcon, ArrowRightIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect, Suspense} from 'react';
+import { BoltIcon, PlayCircleIcon} from '@heroicons/react/24/outline';
 
-import { useLoader } from "@react-three/fiber";
-import { Environment, OrbitControls} from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { OrbitControls } from '@react-three/drei';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import * as THREE from 'three';
+import { DefaultLoadingManager } from 'three';
 
 import Typewriter from "typewriter-effect";
 
@@ -15,11 +12,11 @@ import './heroSection.css';
 
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "./plant.glb");
+  const gltf = useLoader(GLTFLoader, "/bb8_droid.glb");
 
   return (
     <>
-      <primitive object={gltf.scene} scale={4} position={[0,-0.9,0]} rotation-y={-0.2}/>   
+      <primitive object={gltf.scene} scale={0.5} position={[0,-1.9,0]} rotation-y={-0.2}/>   
     </>
   );
 };
@@ -30,9 +27,8 @@ const Loading = () => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const url = './plant.glb';
-    THREE.DefaultLoadingManager.onLoad = () => setFinished(true);
-    THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) =>
+    DefaultLoadingManager.onLoad = () => setFinished(true);
+    DefaultLoadingManager.onProgress = (itemsLoaded, itemsTotal) =>
       setWidth((itemsLoaded / itemsTotal) * 200);
   }, [])
 
@@ -80,9 +76,9 @@ export default function HeroSection() {
       
       <main>
         <div className="relative px-6 lg:px-8">
+       
           <div className="mx-auto max-w-6xl py-2">
             <div>
-
               <div className="pointer-card absolute right-0 top-0 hidden lg:inline">
                 <div className="content">
                   <div className="arrow">
@@ -150,6 +146,8 @@ export default function HeroSection() {
                     <div className="w-full h-[400px]">
                       <Loading />
                       <Canvas>
+                      <ambientLight intensity={0.7} />
+        <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
                         <Suspense fallback={null}>
                             <Model />
                             <OrbitControls
@@ -159,9 +157,9 @@ export default function HeroSection() {
                                enableDamping
                                dampingFactor={0.5}
                                rotateSpeed={1} />
-                            <Environment preset="sunset" />
                         </Suspense>
                       </Canvas>
+                     '
                       </div>
                       <div className="pt-2 px-6">
                         <h5 className="text-gray-900 text-xl font-semibold mb-2">Monstera Plant</h5>

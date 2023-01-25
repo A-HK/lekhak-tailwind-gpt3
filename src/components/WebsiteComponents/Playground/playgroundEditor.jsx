@@ -1,3 +1,4 @@
+import { useState,  useEffect } from "react";
 import {
   SandpackProvider,
   SandpackLayout,
@@ -11,6 +12,7 @@ import './playgroundEditor.css';
 import ModalTemplateCode from "../../LekhakComponentTemplates/ModalComponent/modalTemplate";
 import SingleHorizontalCardTemplateCode from "../../LekhakComponentTemplates/SingleHorizontalCardComponent/singleHorizontalCardTemplate";
 
+import dataFake from './dataFake.json';
 //import setupReact from './setUpReactEditor'
 //import files from './files'
 
@@ -20,19 +22,17 @@ const AppCode = `
 import EmptyState from './EmptyState'; 
 import SingleHorizontalCardTemplate from './SingleHorizontalCardTemplate';
 import React, { useState } from 'react';
-
-const Template = () => {
-  return(
-    <SingleHorizontalCardTemplate />
-  )
-}
+import Template from './Template';
 
 export default function App() {
   const [showTemplate, setShowTemplate] = useState(true);
   return (
     <div className="absolute w-full h-full flex items-center justify-center bg-gradient-to-r from-emerald-200 to-teal-400">
       {showTemplate
-      ? <Template />
+      ? 
+      <>
+      <Template />
+      </>
       : <EmptyState />
       }
     </div>
@@ -76,11 +76,14 @@ const EmptyStateCss =`#output{
   background-image: radial-gradient(circle, #e2e8f0 1.5px, rgba(0, 0, 0, 0) 1px);
 }`
 
+
+
 const dataJson = `{
-  "theme": "travel destination", 
+  "theme": "${dataFake.theme}", 
+  "color": "${dataFake.color}",
   "component" : {
-      "type": "HorizontalSingleCard",  
-      "image": "true", 
+      "type": "${dataFake.component.type}",  
+      "image": ${dataFake.component.image}, 
       "content":[
           {
               "title":"Udaipur", 
@@ -92,6 +95,28 @@ const dataJson = `{
 }`
 
 export default function PlaygroundEditor(){
+  
+  const [templateCode, setTemplateCode] = useState(EmptyStateCode);
+
+  useEffect(()=>{
+    let componentType = "emptyState";
+  
+    dataFake.component.type
+      ? componentType = dataFake.component.type 
+      : componentType = "emptyState";
+  
+    switch(componentType) {
+        case "SingleHorizontalCard":
+          setTemplateCode(SingleHorizontalCardTemplateCode)
+          break;
+        case "Modal":
+          setTemplateCode(ModalTemplateCode)
+          break;
+        default:
+          setTemplateCode(EmptyStateCode)
+    }
+  
+  })
 
     return(
         <>
@@ -113,6 +138,10 @@ export default function PlaygroundEditor(){
             },
             "/SingleHorizontalCardTemplate.jsx": {
               code: SingleHorizontalCardTemplateCode,
+              hidden: true,
+            },
+            "/Template.jsx": {
+              code: templateCode,
               active: true,
             },
             "/data.json": dataJson,

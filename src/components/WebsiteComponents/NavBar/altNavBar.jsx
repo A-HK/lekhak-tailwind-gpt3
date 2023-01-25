@@ -76,8 +76,8 @@ function classNames(...classes) {
 
 export default function AltNavBar() {
   return (
-    <Popover className="text-left sticky inset-x-0 top-0 z-50 px-6 py-6 lg:px-8 bg-opacity-30 backdrop-filter backdrop-blur-lg">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <Popover className="text-left sticky inset-x-0 top-0 z-50 px-6 py-4 lg:px-8 bg-opacity-30 backdrop-filter backdrop-blur-lg">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
