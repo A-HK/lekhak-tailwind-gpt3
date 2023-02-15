@@ -1,7 +1,10 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState, useEffect } from 'react'
 import { RadioGroup, Dialog, Transition } from '@headlessui/react'
 import { CheckCircleIcon, TrashIcon, CheckIcon, BoltIcon } from '@heroicons/react/24/outline'
 
+import axios from 'axios';
+
+import data from './dataFake.json'
 
 const products = [
   {
@@ -32,6 +35,29 @@ function classNames(...classes) {
 
 
 export default function ModalForm({showModalForm, setShowModalForm}) {
+  const term = data?.theme;
+  const [imageUrls, setImageUrls] = useState({images: []});
+
+  const getData = async() => {
+    const response = await axios.get('https://api.unsplash.com/search/photos', {
+      params: {
+        query: term,
+        perPage: 7
+      },
+      headers: {
+          Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_CLIENT_ID}`
+      }
+    })
+
+    setImageUrls({images: response.data.results});
+  };
+
+  useEffect(() => {
+    getData();
+  }, [term]);
+
+  //pass imageurls to playground editor which will in turn append to dataJson or append here to gpt response
+  
   const [componentInput, setComponentInput] = useState("");
   const [result, setResult] = useState({
     theme: "",
@@ -117,7 +143,7 @@ export default function ModalForm({showModalForm, setShowModalForm}) {
             
 
               <div className="mt-2 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                <div className="sm:col-span-2">
+                {/* <div className="sm:col-span-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Project name
                   </label>
@@ -130,7 +156,7 @@ export default function ModalForm({showModalForm, setShowModalForm}) {
                       className="placeholder:text-gray-400 block w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-300 focus:border-teal-300 sm:text-sm"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="sm:col-span-2 pb-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -195,7 +221,7 @@ export default function ModalForm({showModalForm, setShowModalForm}) {
         </form>
       </div>
     </div>
-            
+          {console.log(imageUrls)}  
             </div>
           </Transition.Child>
         </div>

@@ -8,15 +8,17 @@ import { DefaultLoadingManager } from 'three';
 
 import Typewriter from "typewriter-effect";
 
+import PlaneModel from "./Model/Model";
+
 import './heroSection.css';
 
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "/bb8_droid.glb");
+  const gltf = useLoader(GLTFLoader, "/plant.glb");
 
   return (
     <>
-      <primitive object={gltf.scene} scale={0.5} position={[0,-1.9,0]} rotation-y={-0.2}/>   
+      <primitive object={gltf.scene} scale={4} position={[0,-0.9,0]} rotation-y={-0.2}/>   
     </>
   );
 };
@@ -75,7 +77,7 @@ export default function HeroSection() {
       </div>
       
       <main>
-        <div className="relative px-6 lg:px-8">
+        <div className="relative p-8 lg:px-8 lg:py-2">
        
           <div className="mx-auto max-w-6xl py-2">
             <div>
@@ -149,6 +151,7 @@ export default function HeroSection() {
                       <ambientLight intensity={0.7} />
         <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
                         <Suspense fallback={null}>
+                            {/* <PlaneModel scale={4} position={[0,-0.9,0]}  rotation-y={-0.2} rotation-x={-0.3}/> */}
                             <Model />
                             <OrbitControls
                                autoRotate
@@ -159,7 +162,6 @@ export default function HeroSection() {
                                rotateSpeed={1} />
                         </Suspense>
                       </Canvas>
-                     '
                       </div>
                       <div className="pt-2 px-6">
                         <h5 className="text-gray-900 text-xl font-semibold mb-2">Monstera Plant</h5>

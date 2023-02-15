@@ -22,14 +22,14 @@ function Features() {
   }, [tab])
 
   return (
-    <section className="relative py-6 my-10">
+    <section className="relative py-6 my-16">
 
       {/* Section background (needs .relative class on parent and next sibling elements) */}
       <div className="absolute inset-0 pointer-events-none mb-16" aria-hidden="true"></div>
       <div className="absolute left-0 right-0 m-auto w-px p-px h-20 transform -translate-y-1/2"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="pt-12 md:pt-20">
+        <div className="py-12">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
@@ -46,7 +46,7 @@ function Features() {
               {/* Tabs buttons */}
               <div className="mb-8 md:mb-0">
                 <a
-                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-3 ${tab !== 1 ? 'bg-white shadow-lg hover:shadow-xl' : 'bg-gray-200'}`}
+                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-3 ${tab !== 1 ? 'bg-white shadow-lg hover:shadow-xl' : 'bg-gray-100'}`}
                   href="#0"
                   onClick={(e) => { e.preventDefault(); setTab(1); }}
                 >
@@ -61,7 +61,7 @@ function Features() {
                   </div>
                 </a>
                 <a
-                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-3 ${tab !== 2 ? 'bg-white shadow-md hover:shadow-lg' : 'bg-gray-200 border-transparent'}`}
+                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-6 ${tab !== 2 ? 'bg-white shadow-md hover:shadow-lg' : 'bg-gray-100 border-transparent'}`}
                   href="#0"
                   onClick={(e) => { e.preventDefault(); setTab(2); }}
                 >
@@ -76,7 +76,7 @@ function Features() {
                   </div>
                 </a>
                 <a
-                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-3 ${tab !== 3 ? 'bg-white shadow-md hover:shadow-lg' : 'bg-gray-200 border-transparent'}`}
+                  className={`flex items-center text-lg p-5 rounded transition duration-300 ease-in-out mb-6 ${tab !== 3 ? 'bg-white shadow-md hover:shadow-lg' : 'bg-gray-100 border-transparent'}`}
                   href="#0"
                   onClick={(e) => { e.preventDefault(); setTab(3); }}
                 >
@@ -109,8 +109,8 @@ function Features() {
                   leaveEnd="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <img className="md:max-w-none mx-auto rounded" src={'/playground-form-alt.png'} width="600" height="570" alt="Features bg" />
-                    <img className="md:max-w-none absolute left-52 -top-4 transform animate-float rounded-lg" src={'/create-btn-img.png'} width="200" height="130" alt="Element"/>
+                    <img className="md:max-w-none mx-auto rounded" src={'/playground-form-horz.png'} width="600" height="570" alt="Features bg" />
+                    {/* <img className="md:max-w-none absolute left-52 -top-4 transform animate-float rounded-lg" src={'/create-btn-img.png'} width="200" height="130" alt="Element"/> */}
                   </div>
                 </Transition>
                 {/* Item 2 */}
@@ -126,7 +126,7 @@ function Features() {
                   leaveEnd="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <img className="md:max-w-none mx-auto rounded" src={'/component-full.png'} width="700" height="670" alt="Features bg" />
+                    <img className="md:max-w-none mx-auto rounded" src={'/playground-features-alt.png'} width="700" height="670" alt="Features bg" />
                     {/* <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width="500" height="44" alt="Element" style={{ top: '30%' }} /> */}
                   </div>
                 </Transition>
@@ -143,7 +143,7 @@ function Features() {
                   leaveEnd="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <img className="md:max-w-none mx-auto rounded" src={'/supershot.png'} width="700" height="670" alt="Features bg" />
+                    <img className="md:max-w-none mx-auto rounded" src={'/playground-sample.png'} width="700" height="670" alt="Features bg" />
                     {/* <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width="500" height="44" alt="Element" style={{ top: '30%' }} /> */}
                   </div>
                 </Transition>

@@ -8,9 +8,15 @@ import {
 } from "@codesandbox/sandpack-react";
 import { cobalt2 } from "@codesandbox/sandpack-themes";
 import './playgroundEditor.css';
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 
 import ModalTemplateCode from "../../LekhakComponentTemplates/ModalComponent/modalTemplate";
 import SingleHorizontalCardTemplateCode from "../../LekhakComponentTemplates/SingleHorizontalCardComponent/singleHorizontalCardTemplate";
+import SingleVerticalCardTemplateCode from "../../LekhakComponentTemplates/SingleVerticalCardComponent/singleVerticalCardTemplate";
+import HeroSectionTemplateCode from "../../LekhakComponentTemplates/HeroSectionComponent/heroSectionTemplate";
+import FeaturesTemplateCode from "../../LekhakComponentTemplates/FeaturesComponent/featuresTemplate";
+import DashboardTemplateCode from "../../LekhakComponentTemplates/DashboardComponent/dashboardTemplate";
+import TestimonialTemplateCode from "../../LekhakComponentTemplates/TestimonialComponent/testimonialComponentTemplate";
 
 import dataFake from './dataFake.json';
 //import setupReact from './setUpReactEditor'
@@ -20,14 +26,13 @@ import dataFake from './dataFake.json';
 
 const AppCode = `
 import EmptyState from './EmptyState'; 
-import SingleHorizontalCardTemplate from './SingleHorizontalCardTemplate';
 import React, { useState } from 'react';
 import Template from './Template';
 
 export default function App() {
   const [showTemplate, setShowTemplate] = useState(true);
   return (
-    <div className="absolute w-full h-full flex items-center justify-center bg-gradient-to-r from-emerald-200 to-teal-400">
+    <div className="absolute p-6 min-w-full min-h-full flex items-center justify-center bg-gradient-to-r from-emerald-200 to-teal-400">
       {showTemplate
       ? 
       <>
@@ -78,24 +83,10 @@ const EmptyStateCss =`#output{
 
 
 
-const dataJson = `{
-  "theme": "${dataFake.theme}", 
-  "color": "${dataFake.color}",
-  "component" : {
-      "type": "${dataFake.component.type}",  
-      "image": ${dataFake.component.image}, 
-      "content":[
-          {
-              "title":"Udaipur", 
-              "body":"The city of lakes, Udaipur is a lovely land around the azure water lakes, hemmed in by the lush hills of the Aravalis.",
-              "callsToAction" : ["View", "See Ratings"]
-          }
-      ]
-  }
-}`
+const dataJson = `{"theme": "travel", "colorScheme": "teal", "component": {"type": "HeroSectionComponent", "image": "true", "content": [{"title": "Discover the world with us", "body":  "Embark on a journey filled with unforgettable experiences and make memories that will last a lifetime. Our team of travel experts is here to guide you every step of the way.", "topTag": "Your Adventure Awaits", "nav": ["Book a Trip", "Top Destinations", "Explore Offers", "About Us"], "callsToAction": ["Get Started", "Know More"]}]}}`
 
 export default function PlaygroundEditor(){
-  
+  const [openCodeEditor, setOpenCodeEditor] = useState(false);
   const [templateCode, setTemplateCode] = useState(EmptyStateCode);
 
   useEffect(()=>{
@@ -106,11 +97,26 @@ export default function PlaygroundEditor(){
       : componentType = "emptyState";
   
     switch(componentType) {
-        case "SingleHorizontalCard":
+        case "SingleHorizontalCardComponent":
           setTemplateCode(SingleHorizontalCardTemplateCode)
           break;
-        case "Modal":
+        case "SingleVerticalCardComponent":
+          setTemplateCode(SingleVerticalCardTemplateCode)
+          break;
+        case "HeroSectionComponent":
+          setTemplateCode(HeroSectionTemplateCode)
+          break;
+        case "ModalComponent":
           setTemplateCode(ModalTemplateCode)
+          break;
+        case "FeaturesSectionComponent":
+          setTemplateCode(FeaturesTemplateCode)
+          break;
+        case "DashboardComponent":
+          setTemplateCode(DashboardTemplateCode)
+          break;
+        case "TestimonialComponent":
+          setTemplateCode(TestimonialTemplateCode)
           break;
         default:
           setTemplateCode(EmptyStateCode)
@@ -121,6 +127,16 @@ export default function PlaygroundEditor(){
     return(
         <>
         <div className="h-full" id="playground-editor">
+          <button 
+            type="button"
+            onClick={()=>{setOpenCodeEditor(!openCodeEditor);}}
+            className="my-4 inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-gray-800 shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+          >
+            {openCodeEditor 
+            ? <span><p className="align-middle inline-block">Close Code Editor</p><EyeSlashIcon className="h-4 w-4 ml-2 inline-block"/></span>
+            : <span><p className="align-middle inline-block">Open Code Editor</p><EyeIcon className="h-4 w-4 ml-2 inline-block"/></span>
+            }
+          </button>
           <SandpackProvider 
           template="react"
           files={{
@@ -134,10 +150,6 @@ export default function PlaygroundEditor(){
             },
             "/EmptyState.css": {
               code: EmptyStateCss,
-              hidden: true,
-            },
-            "/SingleHorizontalCardTemplate.jsx": {
-              code: SingleHorizontalCardTemplateCode,
               hidden: true,
             },
             "/Template.jsx": {
@@ -168,11 +180,11 @@ export default function PlaygroundEditor(){
             <SandpackLayout style={{borderStyle: "none", borderRadius: "8px"}}>
               
               <SandpackCodeEditor
-              style={{minHeight: 600, maxWidth: 600}}/> {/* display: none */}
+              style={{minHeight: 800, maxWidth: 600, display: `${openCodeEditor ? "flex" : "none"}`}}/> {/* display: none */}
               <SandpackPreview
                 showOpenInCodeSandbox={false}
                 showRefreshButton={true}
-                style={{minHeight: 600}}/>
+                style={{minHeight: 800}}/>
             </SandpackLayout>
             </SandpackThemeProvider>
           </SandpackProvider>

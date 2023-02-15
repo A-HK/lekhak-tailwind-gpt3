@@ -156,7 +156,7 @@ function Playground() {
           {/* <div id="left-side-panel" className="absolute p-6 w-full">
           <PlaygroundForm />
           </div> */}
-          <div id="right-side-panel" className="p-6 w-full h-full">
+          <div className="p-6 w-full h-full">
 
               <PlaygroundEditor />
             {/* <CodeBracketIcon className="h-8 w-8 text-white bg-gray-800 p-2 my-3 rounded-lg font-bold"/> */}

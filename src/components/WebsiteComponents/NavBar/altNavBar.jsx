@@ -26,7 +26,7 @@ const components = [
   {
     name: 'Hero Section',
     description: 'Make the first impression of your website count by tailoring the hero section to your needs.',
-    href: '#',
+    href: '/examples/hero-section',
     icon: RocketLaunchIcon,
   },
   {
@@ -36,7 +36,7 @@ const components = [
     icon: ChartBarIcon,
   },
   {
-    name: 'Modals',
+    name: 'Modal',
     description: 'Bring important information front and center with modals and popups.',
     href: '#',
     icon: ArrowPathIcon,
@@ -54,8 +54,8 @@ const components = [
     icon: PuzzlePieceIcon ,
   },
   {
-    name: 'Notifications',
-    description: 'Keep users informed and up-to-date, ensuring they never miss important updates or events.',
+    name: 'Testimonials',
+    description: 'Establish trust and satisfaction by displaying what users have to say about your work.',
     href: '#',
     icon: CheckCircleIcon,
   },
@@ -86,7 +86,7 @@ export default function AltNavBar() {
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
               <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
@@ -102,7 +102,7 @@ export default function AltNavBar() {
                       'group inline-flex items-center rounded-md text-base font-medium hover:text-black focus:outline-none'
                     )}
                   >
-                    <span>Components</span>
+                    <span>Templates</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? 'text-gray-900' : 'text-gray-600',
@@ -267,12 +267,12 @@ export default function AltNavBar() {
                 <div>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=600"
-                    alt="Your Company"
+                    src='/lekhak-inverted.png'
+                    alt="Lekhak"
                   />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-100 hover:text-black focus:outline-none">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>

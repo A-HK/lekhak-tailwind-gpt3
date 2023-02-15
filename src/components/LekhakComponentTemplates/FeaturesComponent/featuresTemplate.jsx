@@ -1,5 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { ChatBubbleBottomCenterTextIcon, GlobeAltIcon, BoltIcon, EnvelopeIcon, ScaleIcon } from '@heroicons/react/24/outline';
+const FeaturesTemplateCode = `
+import { ChatBubbleBottomCenterIcon, GlobeAltIcon, BoltIcon, EnvelopeIcon, CurrencyRupeeIcon } from '@heroicons/react/24/outline';
 
 const transferFeatures = [
   {
@@ -14,7 +14,7 @@ const transferFeatures = [
     name: 'No hidden fees',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ScaleIcon,
+    icon: CurrencyRupeeIcon,
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const communicationFeatures = [
     name: 'Mobile notifications',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ChatBubbleBottomCenterTextIcon,
+    icon: ChatBubbleBottomCenterIcon,
   },
   {
     id: 2,
@@ -41,9 +41,9 @@ const communicationFeatures = [
   },
 ]
 
-export default function FeatureTemplate() {
+export default function FeaturesTemplate() {
   return (
-    <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">
+    <div className="py-16 px-6 bg-gray-50 overflow-hidden">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
         <svg
           className="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4"
@@ -69,10 +69,10 @@ export default function FeatureTemplate() {
         </svg>
 
         <div className="relative">
-          <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 lg:text-5xl">
             A better way to send money
           </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
+          <p className="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in,
             accusamus quisquam.
           </p>
@@ -80,10 +80,10 @@ export default function FeatureTemplate() {
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
-            <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+            <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">
               Transfer funds world-wide
             </h3>
-            <p className="mt-3 text-lg text-gray-500">
+            <p className="mt-3 text-md text-gray-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores
               officia assumenda aliquam laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere.
               Totam, velit.
@@ -93,10 +93,10 @@ export default function FeatureTemplate() {
               {transferFeatures.map((item) => (
                 <div key={item.id} className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                    <p className="ml-16 text-md font-semibold tracking-tight leading-6 text-gray-900">{item.name}</p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
                 </div>
@@ -129,7 +129,7 @@ export default function FeatureTemplate() {
             <img
               className="relative mx-auto"
               width={490}
-              src="/astronaut.png"
+              src="https://illustrations.popsy.co/amber/app-launch.svg"
               alt=""
             />
           </div>
@@ -161,8 +161,8 @@ export default function FeatureTemplate() {
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Always in the loop</h3>
-              <p className="mt-3 text-lg text-gray-500">
+              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">Always in the loop</h3>
+              <p className="mt-3 text-md text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
                 cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
               </p>
@@ -171,10 +171,10 @@ export default function FeatureTemplate() {
                 {communicationFeatures.map((item) => (
                   <div key={item.id} className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                      <p className="ml-16 text-md leading-6 font-medium text-gray-900">{item.name}</p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
                   </div>
@@ -208,7 +208,7 @@ export default function FeatureTemplate() {
               <img
                 className="relative mx-auto"
                 width={490}
-                src="https://tailwindui.com/img/features/feature-example-2.png"
+                src="https://illustrations.popsy.co/amber/graphic-design.svg"
                 alt=""
               />
             </div>
@@ -218,3 +218,6 @@ export default function FeatureTemplate() {
     </div>
   )
 }
+`
+
+export default FeaturesTemplateCode;

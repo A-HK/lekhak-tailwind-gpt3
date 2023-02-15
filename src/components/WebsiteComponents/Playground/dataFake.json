@@ -1,15 +1,1 @@
-{
-    "theme": "travel destination", 
-    "color": "teal",
-    "component" : {
-        "type": "SingleHorizontalCard",  
-        "image": true, 
-        "content":[
-            {
-                "title":"Udaipur", 
-                "body":"The city of lakes, Udaipur is a lovely land around the azure water lakes, hemmed in by the lush hills of the Aravalis.",
-                "callsToAction" : ["View", "See Ratings"]
-            }
-        ]
-    }
-}
+{"theme": "travel", "colorScheme": "teal", "component": {"type": "HeroSectionComponent", "image": "true", "content": [{"title": "Discover the world with us", "body":  "Embark on a journey filled with unforgettable experiences and make memories that will last a lifetime. Our team of travel experts is here to guide you every step of the way.", "topTag": "Your Adventure Awaits", "nav": ["Book a Trip", "Top Destinations", "Explore Offers", "About Us"], "callsToAction": ["Get Started", "Know More"]}]}}

@@ -10,7 +10,8 @@ import ErrorPage from "./error-page";
 import Example from './components/WebsiteComponents/Example/example';
 import Playground from './components/WebsiteComponents/Playground/playground';
 import Relevance from './components/WebsiteComponents/Relevance/relevance';
-import Dashboard from './components/LekhakComponentTemplates/Dashboard/pages/Dashboard';
+import HeroSectionSample from './components/LekhakComponentTemplates/HeroSectionComponent/heroSectionSample';
+//import Dashboard from './components/LekhakComponentTemplates/Dashboard/pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -32,11 +33,10 @@ const router = createBrowserRouter([
     path: "/why-though",
     element: <Relevance />,
     errorElement: <ErrorPage />,
-  },
-  ,
+   },
   {
-    path: "/examples/dashboard",
-    element: <Dashboard />,
+    path: "/examples/hero-section",
+    element: <HeroSectionSample />,
     errorElement: <ErrorPage />,
   },
 ]);

@@ -1,23 +1,9 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-const HeroSectionTemplateCode = `import { Fragment } from 'react'
+import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import data from './data.json';
+import AltNavBar from '../../WebsiteComponents/NavBar/altNavBar'
+
+const data = {"theme": "travel", "colorScheme": "teal", "component": {"type": "HeroSectionComponent", "image": "true", "content": [{"title": "Discover the world with us", "body":  "Embark on a journey filled with unforgettable experiences and make memories that will last a lifetime. Our team of travel experts is here to guide you every step of the way.", "topTag": "Your Adventure Awaits", "nav": ["Book a Trip", "Top Destinations", "Explore Offers", "About Us"], "callsToAction": ["Get Started", "Know More"]}]}}
 
 const navigation = [
   { name: 'Book a Trip', href: '' },
@@ -28,10 +14,44 @@ const navigation = [
 
 const imageUrls = '';
 
-export default function HeroSectionTemplate() {
+export default function HeroSectionSample() {
   
   return (
-    <div className="relative bg-white overflow-hidden shadow-lg p-4">
+    <>
+    <AltNavBar />
+    <div className="px-6">
+    <div className="mt-2 p-6 grid grid-cols-1 lg:grid-cols-4 gap-x-6 bg-gray-800 rounded-md">
+    <div className="bg-gray-800 col-span-1 align-middle flex w-full h-full max-w-lg p-6 text-center">
+        <div className="m-auto -translate-y-12">
+            <p className="mx-auto w-fit bg-gray-900 text-white rounded-2xl py-1.5 px-4 text-sm font-semibold">Prompt Example</p>
+            <h1
+            class="px-2 pt-3 pb-6 uppercase font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-400"
+            >
+            Hero Section
+            </h1>
+            <div
+            className="shadow-sm px-4 py-3 bg-gray-800"
+            >
+                <article className="prose lg:prose-md prose-invert">
+                    <div className="">
+                    <blockquote>
+                        <p>Hero section for a travel agency, teal colour, with images</p>
+                    </blockquote>
+                    </div>
+                    
+                </article>
+            </div>
+            <button
+            type="button"
+            className="my-4 mx-auto rounded-lg px-3 py-2 text-sm font-semibold leading-6 bg-white shadow-md"
+            >
+                Try your own prompt &rarr;
+            </button>
+        </div>
+    </div>
+    <>
+    <div className="col-span-3 mx-auto p-6 flex justify-center items-center bg-gradient-to-r from-emerald-200 to-teal-400">
+    <div className="relative bg-white overflow-hidden rounded-lg shadow-lg p-4">
       <div className="hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
         <svg
           className="absolute top-0 left-1/2 transform translate-x-64 -translate-y-8"
@@ -327,9 +347,13 @@ export default function HeroSectionTemplate() {
             </div>
           </div>
         </main>
-      </div>
+      </div>  
     </div>
+    </div>
+    
+    </>
+    </div>
+    </div>
+    </>
   )
-}`
-
-export default HeroSectionTemplateCode;
+}
