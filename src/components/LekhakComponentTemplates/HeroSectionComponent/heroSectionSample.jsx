@@ -25,7 +25,7 @@ export default function HeroSectionSample() {
         <div className="m-auto -translate-y-12">
             <p className="mx-auto w-fit bg-gray-900 text-white rounded-2xl py-1.5 px-4 text-sm font-semibold">Prompt Example</p>
             <h1
-            class="px-2 pt-3 pb-6 uppercase font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-400"
+            className="px-2 pt-3 pb-6 uppercase font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-400"
             >
             Hero Section
             </h1>
@@ -41,12 +41,14 @@ export default function HeroSectionSample() {
                     
                 </article>
             </div>
+            <a href='/playground'>
             <button
             type="button"
             className="my-4 mx-auto rounded-lg px-3 py-2 text-sm font-semibold leading-6 bg-white shadow-md"
             >
                 Try your own prompt &rarr;
             </button>
+            </a>
         </div>
     </div>
     <>

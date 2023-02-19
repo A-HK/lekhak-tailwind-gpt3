@@ -32,31 +32,31 @@ const components = [
   {
     name: 'Dashboard',
     description: 'Present daily statistics, updates and tools in a more impactful manner.',
-    href: '#',
+    href: '/examples/dashboard-component',
     icon: ChartBarIcon,
   },
   {
     name: 'Modal',
     description: 'Bring important information front and center with modals and popups.',
-    href: '#',
+    href: '/examples/modal-component',
     icon: ArrowPathIcon,
   },
   {
     name: 'Cards',
     description: "Showcase your content and actions with the building blocks of user interfaces.",
-    href: '#',
+    href: '/examples/card-component',
     icon: Squares2X2Icon,
   },
   { 
     name: 'Features Section', 
     description: "Highlight the standout characteristics and capabilities of your creation.", 
-    href: '#', 
+    href: '/examples/features-section', 
     icon: PuzzlePieceIcon ,
   },
   {
     name: 'Testimonials',
     description: 'Establish trust and satisfaction by displaying what users have to say about your work.',
-    href: '#',
+    href: '/examples/testimonial-component',
     icon: CheckCircleIcon,
   },
 ]
