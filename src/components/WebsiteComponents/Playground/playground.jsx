@@ -10,10 +10,14 @@ import ModalForm from "./playgroundModalForm";
 import PlaygroundEditor from "./playgroundEditor";
 
 import './playground.css';
+import dataFake from './dataFake.json';
 
 function Playground() {
  // const [data, setData] = useState(null);
   const [showModalForm, setShowModalForm] = useState(false);
+  const [imageUrls1, setImageUrls1] = useState({images: []});
+  const [imageUrls2, setImageUrls2] = useState({images: []});
+  const [imageUrls3, setImageUrls3] = useState({images: []});
   const [componentInput, setComponentInput] = useState("");
   const [result, setResult] = useState({
     theme: "",
@@ -116,10 +120,8 @@ function Playground() {
           </defs>
         </svg>
       </div>
-      {/* <AltNavBar /> */}
       <header className="playground-header font-bold text-2xl py-4 px-6 flex items-center justify-between row-span-1">
         <div className="flex items-center justify-start">
-          {/* <img className="h-12 w-12 inline-block p-2" src="/lekhak-icon.png" alt=""/> */}
           <h1 className="inline-block p-2 text-3xl font-black tracking-wide">Playground <sup className="font-semibold bg-teal-400 text-xs px-2 text-white rounded-lg">beta</sup></h1>
         </div>
         <div className="flex flex-row items-center justify-end">
@@ -141,9 +143,6 @@ function Playground() {
               className="inline-block px-6 py-2 text-sm font-semibold leading-6 underline underline-offset-4 decoration-1"
             >
               Back to Home
-              {/* <span className="px-1 font-bold" aria-hidden="true">
-                &rarr;
-              </span> */}
             </a>
             </div>
           </div>
@@ -152,13 +151,21 @@ function Playground() {
         <ModalForm 
           showModalForm={showModalForm}
           setShowModalForm={setShowModalForm}
+          imageUrls1={imageUrls1}
+          setImageUrls1={setImageUrls1}
+          imageUrls2={imageUrls2}
+          setImageUrls2={setImageUrls2}
+          imageUrls3={imageUrls3}
+          setImageUrls3={setImageUrls3}
+          searchTerm={dataFake?.theme}
         />
-          {/* <div id="left-side-panel" className="absolute p-6 w-full">
-          <PlaygroundForm />
-          </div> */}
           <div className="p-6 w-full h-full">
 
-              <PlaygroundEditor />
+              <PlaygroundEditor
+                imageUrls1={imageUrls1}
+                imageUrls2={imageUrls2}
+                imageUrls3={imageUrls3}
+               />
             {/* <CodeBracketIcon className="h-8 w-8 text-white bg-gray-800 p-2 my-3 rounded-lg font-bold"/> */}
             {/* <div id="output" className="w-full h-full rounded-xl flex items-center justify-center border-2 border-gray-300 border-dashed hover:border-teal-400">
               {

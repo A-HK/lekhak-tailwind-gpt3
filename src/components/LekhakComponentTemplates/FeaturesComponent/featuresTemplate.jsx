@@ -1,24 +1,28 @@
 const FeaturesTemplateCode = `
-import { ChatBubbleBottomCenterIcon, GlobeAltIcon, BoltIcon, EnvelopeIcon, CurrencyRupeeIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
+import { DocumentCheckIcon, GlobeAltIcon, BoltIcon, CubeIcon, FlagIcon } from '@heroicons/react/24/outline';
+import { validColours, pickValidImgUrl1, pickValidImgUrl2 } from './illustrations.js';
+import data from './data.json';
+
 
 const transferFeatures = [
   {
     id: 1,
-    name: 'Competitive exchange rates',
+    name: 'Collaborate in real-time',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: GlobeAltIcon,
   },
   {
     id: 2,
-    name: 'No hidden fees',
+    name: 'Access files with one click',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: CurrencyRupeeIcon,
+    icon: DocumentCheckIcon,
   },
   {
     id: 3,
-    name: 'Transfers are instant',
+    name: 'Gain instant feedback',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: BoltIcon,
@@ -30,18 +34,40 @@ const communicationFeatures = [
     name: 'Mobile notifications',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ChatBubbleBottomCenterIcon,
+    icon: FlagIcon,
   },
   {
     id: 2,
     name: 'Reminder emails',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: EnvelopeIcon,
+    icon: CubeIcon,
   },
 ]
 
 export default function FeaturesTemplate() {
+  const [validImgUrl1, setValidImgUrl1] = useState("");
+  const [validImgUrl2, setValidImgUrl2] = useState("");
+
+  useEffect(()=>{
+
+      if(validColours.includes(data.colorScheme))
+      {
+            setValidImgUrl1('https://illustrations.popsy.co/' + data.colorScheme + pickValidImgUrl1);
+            setValidImgUrl2('https://illustrations.popsy.co/' + data.colorScheme + pickValidImgUrl2);
+      }
+      else
+      {
+            setValidImgUrl1('https://illustrations.popsy.co/white' + pickValidImgUrl1);
+            setValidImgUrl2('https://illustrations.popsy.co/white' + pickValidImgUrl2);
+      }
+
+      console.log('Image URL 1 sourced from:' + validImgUrl1);
+      console.log('Image URL 2 sourced from:' + validImgUrl2);
+    }, [])
+
+
+
   return (
     <div className="py-16 px-6 bg-gray-50 overflow-hidden">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -70,7 +96,7 @@ export default function FeaturesTemplate() {
 
         <div className="relative">
           <h2 className="text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 lg:text-5xl">
-            A better way to send money
+            Build faster, and smarter
           </h2>
           <p className="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in,
@@ -129,7 +155,7 @@ export default function FeaturesTemplate() {
             <img
               className="relative mx-auto"
               width={490}
-              src="https://illustrations.popsy.co/amber/app-launch.svg"
+              src={validImgUrl1}
               alt=""
             />
           </div>
@@ -174,7 +200,7 @@ export default function FeaturesTemplate() {
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-md leading-6 font-medium text-gray-900">{item.name}</p>
+                      <p className="ml-16 text-md leading-6 font-semibold text-gray-900">{item.name}</p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
                   </div>
@@ -208,7 +234,7 @@ export default function FeaturesTemplate() {
               <img
                 className="relative mx-auto"
                 width={490}
-                src="https://illustrations.popsy.co/amber/graphic-design.svg"
+                src={validImgUrl2}
                 alt=""
               />
             </div>

@@ -4,19 +4,19 @@ import AltNavBar from '../../WebsiteComponents/NavBar/altNavBar';
 
 function TestimonialTemplate() {
     return (
-      <section className="bg-gray-800 rounded-lg">
-        <div className="max-w-7xl mx-auto md:grid md:grid-cols-2 md:px-6 lg:px-8">
+      <section className="rounded-lg h-full w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-sky-500">
+        <div className="max-w-7xl h-full mx-auto md:grid md:grid-cols-2 md:px-6 lg:p-8">
           <div className="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-10 md:border-r md:border-sky-500 lg:pl-8">
             <div className="md:flex-shrink-0">
                 {/* <MapIcon className="h-10 w-10 text-white inline-block" /> */}
-                <article className="prose lg:prose-md prose-invert mb-8">
+                <article className="prose lg:prose-md mb-8">
                 <blockquote className="md:flex-grow md:flex md:flex-col">
-                    <p className="text-white font-bold text-lg uppercase align-middle tracking-widest inline-block p-2">FitNow made me healthier than ever before</p>
+                    <p className="font-bold text-lg uppercase align-middle tracking-widest inline-block p-2">FitNow made me healthier than ever before</p>
                 </blockquote>
                 </article>
             </div>
           
-              <div className="relative text-lg font-medium text-white md:flex-grow">
+              <div className="relative text-lg font-medium md:flex-grow">
                 <svg
                   className="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-sky-400"
                   fill="currentColor"
@@ -47,24 +47,25 @@ function TestimonialTemplate() {
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-base font-medium text-white">Judith Black</div>
-                    <div className="text-base font-medium text-sky-200">CEO, Tuple</div>
+                    <div className="text-base font-medium ">Judith Black</div>
+                    <div className="text-base font-medium text-sky-800">CEO, Tuple</div>
                   </div>
                 </div>
               </footer>
           
           </div>
-          <div className="py-12 px-4 border-t-2 border-sky-200 sm:px-6 md:py-16 md:pr-0 md:pl-10 md:border-t-0 md:border-l lg:pl-16">
+          
+          <div className="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-8 lg:pl-10">
             <div className="md:flex-shrink-0">
                 {/* <MapIcon className="h-10 w-10 text-white inline-block" /> */}
-                <article className="prose lg:prose-md prose-invert mb-8">
+                <article className="prose lg:prose-md mb-8">
                 <blockquote className="md:flex-grow md:flex md:flex-col">
-                    <p className="text-white font-bold text-lg uppercase align-middle tracking-widest inline-block p-2">FitNow made me healthier than ever before</p>
+                    <p className="font-bold text-lg uppercase align-middle tracking-widest inline-block p-2">FitNow made me healthier than ever before</p>
                 </blockquote>
                 </article>
             </div>
           
-              <div className="relative text-lg font-medium text-white md:flex-grow">
+              <div className="relative text-lg font-medium md:flex-grow">
                 <svg
                   className="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-sky-400"
                   fill="currentColor"
@@ -95,8 +96,8 @@ function TestimonialTemplate() {
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-base font-medium text-white">Joseph Rodriguez</div>
-                    <div className="text-base font-medium text-sky-200">CEO, Workcation</div>
+                    <div className="text-base font-medium">Joseph Rodriguez</div>
+                    <div className="text-base font-medium text-sky-800">CEO, Workcation</div>
                   </div>
                 </div>
               </footer>
@@ -120,7 +121,7 @@ function TestimonialTemplate() {
       </>
       <div className="bg-gray-800 col-span-2 align-middle flex w-full h-full text-center">
           <div className="mt-24 py-24">
-              <p className="mx-auto w-fit bg-gray-900 text-white rounded-2xl py-1.5 px-4 text-sm font-semibold">Prompt Example</p>
+              <p className="mx-auto w-fit bg-gray-900 rounded-2xl py-1.5 px-4 text-sm text-white font-semibold">Prompt Example</p>
               <h1
               className="px-2 pt-3 pb-6 uppercase font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-emerald-200 to-teal-400"
               >

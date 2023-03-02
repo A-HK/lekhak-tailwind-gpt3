@@ -1,9 +1,28 @@
-const ModalTemplateCode = `import { Fragment, useState } from 'react'
+const ModalTemplateCode = `import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationCircleIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
+import { validColours, pickValidImgUrl1 } from './illustrations.js';
+import data from './data.json';
 
 export default function ModalTemplate() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [validImgUrl, setValidImgUrl] = useState("");
+
+  let selectedColor = data.colorScheme ? data.colorScheme : "#2dd4bf";
+
+  useEffect(()=>{
+
+      if(validColours.includes(data.colorScheme))
+      {
+            setValidImgUrl('https://illustrations.popsy.co/' + data.colorScheme + pickValidImgUrl1);
+      }
+      else
+      {
+            setValidImgUrl('https://illustrations.popsy.co/white' + pickValidImgUrl1);
+      }
+
+      console.log('Image URL sourced from:' + validImgUrl);
+    }, [])
 
   return (
     <div className="p-12 my-12">
@@ -48,34 +67,57 @@ export default function ModalTemplate() {
                 </button>
               </div>
               <div className="text-center w-full">
-                <div className="mx-auto my-2 flex items-center justify-center h-12 w-12 rounded-full bg-emerald-100">
+                <div className="w-full flex items-center justify-center">
+                {data?.component?.image &&
+                  <img 
+                  src={validImgUrl}
+                  className='h-80 w-80'
+                  />
+                }
+              </div>
+                {/* <div className="mx-auto my-2 flex items-center justify-center h-12 w-12 rounded-full bg-emerald-100">
                   <CheckCircleIcon className="h-6 w-6 text-emerald-600" aria-hidden="true" />
-                </div>
+                </div> */}
+                
+
                 <div className="mt-3 text-center sm:ml-4">
-                  <Dialog.Title as="h3" className="py-1 text-lg leading-6 font-medium text-gray-900">
-                    Payment Successful
+                  <Dialog.Title as="h3" className="py-1 text-lg leading-6 font-semibold text-gray-900">
+                  {data?.component?.content?.[0].title &&
+                    <span className="inline-block p-1 align-middle">{data.component.content[0].title}</span>
+                  }
                   </Dialog.Title>
+
                   <div className="mt-2">
+                  {data?.component?.content?.[0].body &&
                     <p className="text-sm text-gray-500">
-                    Thank you for your payment. Your transaction is complete.
+                      {data.component.content[0].body}
                     </p>
+                  }
                   </div>
                 </div>
               </div>
               <div className="mt-8 sm:flex justify-items-stretch gap-x-4">
+              
                 <button
                   type="button"
-                  className="flex-1 text-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-400 font-medium text-white hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300"
+                  className="flex-1 text-center w-full rounded-md border border-transparent bg-gray-800 shadow-sm px-4 py-2 font-medium text-white focus:outline-none hover:opacity-75"
+                  style={{
+                    backgroundColor: selectedColor
+                  }}
                   onClick={() => setOpen(false)}
                 >
-                  View details
+                  {data?.component?.content?.[0]?.options?.[0]
+                    && <>{data.component.content[0].options[0]}</>
+                  }
                 </button>
                 <button
                   type="button"
-                  className="flex-1 text-center mt-3 w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:mt-0"
+                  className="flex-1 text-center mt-3 w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 font-medium text-white focus:outline-none hover:opacity-75 sm:mt-0"
                   onClick={() => setOpen(false)}
                 >
-                  Return to homepage
+                {data?.component?.content?.[0]?.options?.[1]
+                  && <>{data.component.content[0].options[1]}</>
+                }
                 </button>
               </div>
             </div>
@@ -86,5 +128,6 @@ export default function ModalTemplate() {
     </div>
   )
 }
+
 `
 export default ModalTemplateCode;

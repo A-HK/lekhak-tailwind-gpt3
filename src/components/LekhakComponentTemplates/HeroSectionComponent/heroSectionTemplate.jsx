@@ -14,10 +14,11 @@
   }
   ```
 */
-const HeroSectionTemplateCode = `import { Fragment } from 'react'
+const HeroSectionTemplateCode = `import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import data from './data.json';
+import imageUrls from './imageUrlsOne.json';
 
 const navigation = [
   { name: 'Book a Trip', href: '' },
@@ -26,12 +27,12 @@ const navigation = [
   { name: 'About Us', href: '' },
 ]
 
-const imageUrls = '';
 
 export default function HeroSectionTemplate() {
-  
+  let selectedColor = data.colorScheme ? data.colorScheme : "#2dd4bf";
+
   return (
-    <div className="relative bg-white overflow-hidden shadow-lg p-4">
+    <div className="relative overflow-hidden shadow-lg p-4 bg-white">
       <div className="hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
         <svg
           className="absolute top-0 left-1/2 transform translate-x-64 -translate-y-8"
@@ -57,7 +58,7 @@ export default function HeroSectionTemplate() {
         </svg>
       </div>
 
-      <div className="relative pt-6 pb-16">
+      <div className="relative pt-6 pb-16 lg:pt-2">
         <Popover>
           <nav
             className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
@@ -66,7 +67,7 @@ export default function HeroSectionTemplate() {
             <div className="flex items-center flex-1">
               <div className="flex items-center justify-between w-full md:w-auto">
                 <div className="-mr-2 flex items-center md:hidden">
-                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-400">
+                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
                     <span className="sr-only">Open main menu</span>
                     <Bars2Icon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -86,7 +87,9 @@ export default function HeroSectionTemplate() {
               <span className="inline-flex rounded-md shadow-md ring-1 ring-black ring-opacity-5">
                 <a
                   href="#"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-teal-500 bg-white hover:bg-gray-50"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md bg-white hover:bg-gray-50" style={{
+                    color: selectedColor
+                  }}
                 >
                   Log in
                 </a>
@@ -110,19 +113,19 @@ export default function HeroSectionTemplate() {
               <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div className="px-5 pt-4 flex items-center justify-between">
                   <div className="-mr-2">
-                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-400">
+                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
                       <span className="sr-only">Close main menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
                   </div>
                 </div>
                 {data?.component?.content[0]?.nav &&
-                <div className="px-2 pt-2 pb-3 space-y-1">
+                <div className="px-2 py-1 space-y-1">
                   {data.component.content[0].nav.map((item) => (
                     <a
                       key={item}
                       href='#'
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-gray-900 hover:bg-gray-50"
+                      className="block p-3 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     >
                       {item}
                     </a>
@@ -131,7 +134,10 @@ export default function HeroSectionTemplate() {
                 }
                 <a
                   href=""
-                  className="block w-full px-5 py-3 text-center font-medium text-teal-500 bg-gray-50 hover:bg-gray-100"
+                  className="block w-full px-5 py-3 text-center font-medium bg-gray-50 hover:bg-gray-100"
+                  style={{
+                    color: selectedColor
+                  }}
                 >
                   Log in
                 </a>
@@ -145,7 +151,9 @@ export default function HeroSectionTemplate() {
             <div className="sm:text-center md:max-w-xl md:mx-auto lg:col-span-6 lg:text-left lg:py-16">
               <h1>
               {data?.component?.content[0]?.topTag &&
-              <span className="block text-sm font-semibold uppercase tracking-widest text-teal-500">
+              <span className="block text-sm font-semibold uppercase tracking-widest"  style={{
+                color: selectedColor
+              }}>
                 {data.component.content[0].topTag}
               </span>
               }
@@ -165,7 +173,10 @@ export default function HeroSectionTemplate() {
               <div className="rounded-md shadow">
                 <a
                   href="#"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 md:py-2 md:px-6"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white md:py-2 md:px-6"
+                  style={{
+                    backgroundColor: selectedColor
+                  }}
                 >
                   {data.component.content[0].callsToAction[0]}
                 </a>
@@ -175,7 +186,10 @@ export default function HeroSectionTemplate() {
               <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
                 <a
                   href="#"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-teal-500 bg-white hover:bg-gray-50 md:py-2 md:px-6"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md bg-white hover:bg-gray-50 md:py-2 md:px-6"
+                  style={{
+                    color: selectedColor
+                  }}
                 >
                 {data.component.content[0].callsToAction[1]}
                 </a>
@@ -264,7 +278,7 @@ export default function HeroSectionTemplate() {
                       <div className="h-64 w-52 shadow-lg overflow-hidden rounded-lg">
                       {imageUrls.images?.[3]?.urls?.raw 
                         ? <img
-                            src={imageUrls.images?.images[3].urls.raw}
+                            src={imageUrls.images[3].urls.raw}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -278,7 +292,7 @@ export default function HeroSectionTemplate() {
                       <div className="h-64 w-52 shadow-lg overflow-hidden rounded-lg">
                       {imageUrls.images?.[4]?.urls?.raw 
                         ? <img
-                            src={imageUrls.images?.images[4].urls.raw}
+                            src={imageUrls.images[4].urls.raw}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />

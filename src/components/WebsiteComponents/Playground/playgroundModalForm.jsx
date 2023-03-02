@@ -1,10 +1,8 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { RadioGroup, Dialog, Transition } from '@headlessui/react'
 import { CheckCircleIcon, TrashIcon, CheckIcon, BoltIcon } from '@heroicons/react/24/outline'
-
-import axios from 'axios';
-
-import data from './dataFake.json'
+import fetchUnsplashImages from './fetchUnsplashImages'
+import dataFake from './dataFake.json'
 
 const products = [
   {
@@ -34,27 +32,19 @@ function classNames(...classes) {
 }
 
 
-export default function ModalForm({showModalForm, setShowModalForm}) {
-  const term = data?.theme;
-  const [imageUrls, setImageUrls] = useState({images: []});
-
-  const getData = async() => {
-    const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: {
-        query: term,
-        perPage: 7
-      },
-      headers: {
-          Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_CLIENT_ID}`
-      }
-    })
-
-    setImageUrls({images: response.data.results});
-  };
-
-  useEffect(() => {
-    getData();
-  }, [term]);
+export default function ModalForm({
+  showModalForm, 
+  setShowModalForm, 
+  imageUrls1, 
+  setImageUrls1, 
+  imageUrls2, 
+  setImageUrls2,
+  imageUrls3, 
+  setImageUrls3
+}) {
+  //const term = data?.theme;
+  //const [imageUrls, setImageUrls] = useState({images: []});
+  
 
   //pass imageurls to playground editor which will in turn append to dataJson or append here to gpt response
   
@@ -89,6 +79,17 @@ export default function ModalForm({showModalForm, setShowModalForm}) {
 }
 
   const cancelButtonRef = useRef(null)
+
+  if(dataFake.component.type == "HeroSectionComponent")
+  {
+    fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: dataFake?.theme});
+  }
+  else if(dataFake.component.type == "VerticalCardComponent" || dataFake.component.type == "HorizontalCardComponent")
+  {
+    fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: dataFake?.component?.content?.[0]?.title});
+    fetchUnsplashImages({imageUrls: imageUrls2, setImageUrls: setImageUrls2, searchTerm: dataFake?.component?.content?.[1]?.title});
+    fetchUnsplashImages({imageUrls: imageUrls3, setImageUrls: setImageUrls3, searchTerm: dataFake?.component?.content?.[2]?.title});
+  }
 
   return (
     <Transition.Root show={showModalForm} as={Fragment}>
@@ -221,7 +222,6 @@ export default function ModalForm({showModalForm, setShowModalForm}) {
         </form>
       </div>
     </div>
-          {console.log(imageUrls)}  
             </div>
           </Transition.Child>
         </div>

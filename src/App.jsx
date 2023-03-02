@@ -12,7 +12,7 @@ export default function App() {
     <div className="App">
       <AltNavBar/>
       <HeroSection />
-      <Features />
+      {/* <Features /> */}
     </div>
   );
 }

@@ -252,7 +252,7 @@ export default function FeaturesComponentSample() {
                 <article className="prose lg:prose-md prose-invert">
                     <div className="">
                     <blockquote>
-                        <p>Features section component for a finance startup, amber colour, with images</p>
+                        <p>Features section component for a finance startup, orange colour, with images</p>
                     </blockquote>
                     </div>
                     

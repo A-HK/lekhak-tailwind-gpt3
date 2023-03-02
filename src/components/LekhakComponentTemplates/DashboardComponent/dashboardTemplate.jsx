@@ -8,58 +8,62 @@ import {
   BuildingOffice2Icon,
   MagnifyingGlassIcon,
   BellIcon,
+  ChartBarIcon,
+  FlagIcon,
+  ArrowTrendingUpIcon,
   ScaleIcon,
+  PencilSquareIcon,
 } from '@heroicons/react/24/outline'
+import data from './data.json';
 
 const cards = [
-  { name: 'New Users', href: '#', icon: ScaleIcon, amount: '54' },
-  { name: 'Bugs Reported', href: '#', icon: ScaleIcon, amount: '6' },
-  { name: 'Average Response Time', href: '#', icon: ScaleIcon, amount: '10 seconds' },
+  { name: 'New Users', href: '#', icon: ChartBarIcon, amount: '54' },
+  { name: 'Bugs Reported', href: '#', icon: FlagIcon, amount: '6' },
+  { name: 'Average Response Time', href: '#', icon: ArrowTrendingUpIcon, amount: '10 seconds' },
 ]
-const transactions = [
+
+const CardIcons = [ChartBarIcon, FlagIcon, ArrowTrendingUpIcon]
+
+const actions = [
   {
     id: 1,
-    name: 'Payment to Molly Sanders',
+    name: 'Docker Pipeline Deployment',
     href: '#',
-    amount: '$20,000',
-    currency: 'USD',
     status: 'success',
-    date: 'July 11, 2020',
-    datetime: '2020-07-11',
+    date: 'Jan 11, 2023',
+    datetime: '2023-01-11',
   },
   {
     id: 2,
-    name: 'Payment to Myra Sanders',
+    name: 'GitHub Actions',
     href: '#',
-    amount: '$20,000',
-    currency: 'USD',
-    status: 'failed',
-    date: 'July 11, 2020',
-    datetime: '2020-07-11',
+    status: 'failure',
+    date: 'Jan 10, 2023',
+    datetime: '2023-01-10',
   },
   {
     id: 3,
-    name: 'Payment to Alice Jane',
+    name: 'Vercel Frontend Deployment',
     href: '#',
-    amount: '$20,000',
-    currency: 'USD',
-    status: 'failed',
-    date: 'July 11, 2020',
-    datetime: '2020-07-11',
+    status: 'failure',
+    date: 'Jan 10, 2023',
+    datetime: '2023-01-10',
   },
-  // More transactions...
+  
 ]
 const statusStyles = {
-  success: 'bg-green-100 text-green-800',
-  processing: 'bg-yellow-100 text-yellow-800',
-  failed: 'bg-red-200 text-gray-800',
+  completed: 'bg-green-100 text-green-800',
+  pending: 'bg-yellow-100 text-yellow-800',
+  deadline: 'bg-red-200 text-red-900',
 }
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function DashboardTemplate() {
+  let selectedColor = data.colorScheme ? data.colorScheme : "#2dd4bf";
 
   return (
     <>
@@ -94,7 +98,7 @@ export default function DashboardTemplate() {
               <div className="ml-4 flex items-center md:ml-6">
                 <button
                   type="button"
-                  className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                  className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -103,7 +107,7 @@ export default function DashboardTemplate() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
-                    <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+                    <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
                       <img
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0"
@@ -169,7 +173,11 @@ export default function DashboardTemplate() {
             <div>
               <div className="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
                 <div className="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200">
-                  <div className="flex-1 min-w-0 bg-teal-500 p-6 rounded-lg">
+                  <div 
+                  className="flex-1 min-w-0 p-6 rounded-lg"
+                  style={{
+                    backgroundColor: selectedColor
+                  }}>
                     {/* Profile */}
                     <div className="flex items-center">
                       <img
@@ -181,19 +189,28 @@ export default function DashboardTemplate() {
                         <div className="flex items-center">
                           <img
                             className="h-16 w-16 p-2 rounded-full sm:hidden"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80"
+                            src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0"
                             alt=""
                           />
-                          <h1 className="ml-3 text-2xl font-bold leading-7 text-white sm:leading-9 sm:truncate">
-                            Good morning, Alice Doe
-                          </h1>
+                          {data?.component?.content?.[0].header
+                          ? (
+                            <h1 className="px-2 ml-3 text-2xl font-bold leading-7 text-white sm:leading-9 sm:truncate">
+                              {data.component.content[0].header}
+                            </h1>
+                          )
+                          : (
+                            <h1 className="px-2 ml-3 text-2xl font-bold leading-7 text-white sm:leading-9 sm:truncate">
+                              Good morning, Alice
+                            </h1>
+                          )
+                          }
                         </div>
-                        <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
+                        <dl className="px-2 mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
                          
                           <dt className="sr-only">Account status</dt>
-                          <dd className="mt-3 flex items-center text-sm text-teal-100 font-medium sm:mr-6 sm:mt-0 capitalize">
+                          <dd className="mt-3 flex items-center text-sm font-medium sm:mr-6 sm:mt-0 capitalize text-white">
                             <CheckCircleIcon
-                              className="flex-shrink-0 mr-1.5 h-5 w-5 text-teal-100"
+                              className="flex-shrink-0 mr-1.5 h-5 w-5 text-white"
                               aria-hidden="true"
                             />
                             Verified account
@@ -209,10 +226,62 @@ export default function DashboardTemplate() {
 
             <div>
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="p-2 text-lg leading-6 font-semibold text-gray-900">Your tech updates</h2>
+              {data?.component?.content?.[0].statsTitle
+                ? (
+                  <h2 className="p-2 text-lg leading-6 font-semibold text-gray-900">{data?.component?.content?.[0].statsTitle}</h2>
+                  )
+                : (
+                  <h2 className="p-2 text-lg leading-6 font-semibold text-gray-900">Your Statistics</h2>
+                  )
+              }
                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {/* Card */}
-                  {cards.map((card) => (
+                  {data?.component?.content?.[0].stats 
+                    ? (data.component.content[0].stats.map((statistic, i) => (
+                    <div key={statistic.title} className="bg-white overflow-hidden shadow-lg rounded-lg">
+                      <div className="p-5">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                          {(i==0)
+                            ? <ChartBarIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                            : (i==1)
+                              ? <FlagIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                              : <ArrowTrendingUpIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                          }
+                            
+                          </div>
+                        
+                          <div className="ml-5 w-0 flex-1">
+                            <dl>
+                              {statistic.title &&
+                                (
+                                  <dt className="text-md font-medium text-gray-500">{statistic.title}</dt>
+                                )
+                              }
+                              <dd>
+                              {statistic.data &&
+                                (
+                                  <div className="text-lg font-medium text-gray-900">{statistic.data}</div>
+                                )
+                              }
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="px-5 py-2"
+                      style={{
+                        backgroundColor: selectedColor
+                      }}>
+                        <div className="text-sm">
+                          <a href="#" className="font-medium text-white">
+                            View details &rarr;
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )))
+                  : (cards.map((card) => (
                     <div key={card.name} className="bg-white overflow-hidden shadow-lg rounded-lg">
                       <div className="p-5">
                         <div className="flex items-center">
@@ -229,38 +298,47 @@ export default function DashboardTemplate() {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-teal-300 px-5 py-2">
+                      <div className="px-5 py-2"
+                      style={{
+                        backgroundColor: selectedColor
+                      }}>
                         <div className="text-sm">
                           <a href={card.href} className="font-medium text-white">
-                            View all
+                            View details &rarr;
                           </a>
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )))
+                }
                 </div>
               </div>
-
-              <h2 className="max-w-6xl mx-auto mt-8 px-4 py-2 text-lg leading-6 font-semibold text-gray-900 sm:px-6 lg:px-8">
-                Recent activity
-              </h2>
+              {data?.component?.content?.[0].tableTitle
+              ? (
+                <h2 className="max-w-6xl mx-auto mt-8 px-4 py-2 text-lg leading-6 font-semibold text-gray-900 sm:px-6 lg:px-8">
+                  {data.component.content[0].tableTitle}
+                </h2>
+              )
+              : (
+                <h2 className="max-w-6xl mx-auto mt-8 px-4 py-2 text-lg leading-6 font-semibold text-gray-900 sm:px-6 lg:px-8">
+                  Actions Table
+                </h2>
+              )
+              }
+              
 
               {/* Activity list (smallest breakpoint only) */}
               <div className="shadow sm:hidden">
                 <ul role="list" className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                  {transactions.map((transaction) => (
-                    <li key={transaction.id}>
-                      <a href={transaction.href} className="block px-4 py-4 bg-white hover:bg-gray-50">
+                  {data?.component?.content?.[0].actions && data.component.content[0].actions.map((action) => (
+                    <li key={action.id}>
+                      <a href="#" className="block px-4 py-4 bg-white hover:bg-gray-50">
                         <span className="flex items-center space-x-4">
                           <span className="flex-1 flex space-x-2 truncate">
-                            <BanknotesIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <PencilSquareIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
                             <span className="flex flex-col text-gray-500 text-sm truncate">
-                              <span className="truncate">{transaction.name}</span>
-                              <span>
-                                <span className="text-gray-900 font-medium">{transaction.amount}</span>{' '}
-                                {transaction.currency}
-                              </span>
-                              <time dateTime={transaction.datetime}>{transaction.date}</time>
+                              <span className="truncate">{action.name}</span>
+                              <time>{action.date}</time>
                             </span>
                           </span>
                           <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -276,55 +354,51 @@ export default function DashboardTemplate() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="flex flex-col mt-2">
                     <div className="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
-                      <table className="shadow-lg min-w-full divide-y divide-gray-200">
+                      <table className="shadow-lg min-w-full divide-y divide-gray-200"
+                      style={{
+                        backgroundColor: selectedColor
+                      }}>
                         <thead>
                           <tr>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Transaction
+                            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                              Action
                             </th>
-                            <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Amount
-                            </th>
-                            <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
+                            <th className="hidden px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider md:block">
                               Status
                             </th>
-                            <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-right text-xs font-medium text-white uppercase tracking-wider">
                               Date
                             </th>
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                          {transactions.map((transaction) => (
-                            <tr key={transaction.id} className="bg-white">
+                          {data?.component?.content?.[0].actions && data.component.content[0].actions.map((action) => (
+                            <tr key={action.id} className="bg-white">
                               <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                 <div className="flex">
-                                  <a href={transaction.href} className="group inline-flex space-x-2 truncate text-sm">
-                                    <BanknotesIcon
+                                  <a href="#" className="group inline-flex space-x-2 truncate text-sm">
+                                    <PencilSquareIcon
                                       className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                                       aria-hidden="true"
                                     />
                                     <p className="text-gray-500 truncate group-hover:text-gray-900">
-                                      {transaction.name}
+                                      {action.name}
                                     </p>
                                   </a>
                                 </div>
                               </td>
-                              <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                <span className="text-gray-900 font-medium">{transaction.amount} </span>
-                                {transaction.currency}
-                              </td>
                               <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
                                 <span
                                   className={classNames(
-                                    statusStyles[transaction.status],
+                                    statusStyles[action.status],
                                     'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
                                   )}
                                 >
-                                  {transaction.status}
+                                  {action.status}
                                 </span>
                               </td>
                               <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                <time dateTime={transaction.datetime}>{transaction.date}</time>
+                                <time>{action.date}</time>
                               </td>
                             </tr>
                           ))}
