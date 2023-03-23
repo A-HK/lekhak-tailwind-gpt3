@@ -1,35 +1,25 @@
-import { Fragment, useRef, useState, useEffect } from 'react'
-import { RadioGroup, Dialog, Transition } from '@headlessui/react'
-import { CheckCircleIcon, TrashIcon, CheckIcon, BoltIcon } from '@heroicons/react/24/outline'
+import { Fragment, useRef, useState, useEffect, useCallback } from 'react'
+import { RadioGroup, Dialog, Transition, Listbox } from '@headlessui/react'
+import { CheckCircleIcon, TrashIcon, CheckIcon, BoltIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import fetchUnsplashImages from './fetchUnsplashImages'
-import dataFake from './dataFake.json'
+//import dataFake from './dataFake.json'
+import { dataJson2 } from './playgroundEditor'
 
-const products = [
-  {
-    id: 1,
-    title: 'Basic Tee',
-    href: '#',
-    price: '$32.00',
-    color: 'Black',
-    size: 'Large',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg',
-    imageAlt: "Front of men's Basic Tee in black.",
-  },
-  // More products...
-]
-const deliveryMethods = [
-  { id: 1, title: 'Standard', turnaround: '4–10 business days', price: '$5.00' },
-  { id: 2, title: 'Express', turnaround: '2–5 business days', price: '$16.00' },
-]
-const paymentMethods = [
-  { id: 'credit-card', title: 'Credit card' },
-  { id: 'paypal', title: 'PayPal' },
-  { id: 'etransfer', title: 'eTransfer' },
-]
+import GetGPTCompletion from "../../../utils/getGPTCompletion";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+const availableComponents = [
+  {label: 'Hero Section', value: 'HeroSectionComponent'},
+  {label: 'Dashboard', value: 'DashboardComponent'},
+  {label: 'Features Section', value: 'FeaturesSectionComponent'},
+  {label: 'Modal', value: 'ModalComponent'},
+  {label: 'Vertical Card Grid', value: 'VerticalCardComponent'},
+  {label: 'Horizontal Card Grid', value: 'HorizontalCardComponent'},
+  {label: 'Testimonials', value: 'TestimonialComponent'},
+]
 
 
 export default function ModalForm({
@@ -40,7 +30,13 @@ export default function ModalForm({
   imageUrls2, 
   setImageUrls2,
   imageUrls3, 
-  setImageUrls3
+  setImageUrls3,
+  dataJson,
+  setDataJson,
+  result,
+  setResult,
+  componentRequested,
+  setComponentRequested,
 }) {
   //const term = data?.theme;
   //const [imageUrls, setImageUrls] = useState({images: []});
@@ -49,14 +45,42 @@ export default function ModalForm({
   //pass imageurls to playground editor which will in turn append to dataJson or append here to gpt response
   
   const [componentInput, setComponentInput] = useState("");
-  const [result, setResult] = useState({
-    theme: "",
-    component: [{}],
-  })
-  const [componentRequested, setComponentRequested] = useState(false);
+  const [strObjResult, setStrObjResult] = useState(``);
+  const [selectedComponent, setSelectedComponent] = useState(availableComponents[0]);
+  
+  const fetchImages = useCallback(() => {
+    if (result.component?.type === "HeroSectionComponent") {
+      fetchUnsplashImages({ searchTerm: result.theme })
+        .then((response) => setImageUrls1({ images: response.data.results }))
+        .catch((error) => console.error(error));
+    } else if (
+      result.component?.type === "VerticalCardComponent" ||
+      result.component?.type === "HorizontalCardComponent"
+    ) {
+      fetchUnsplashImages({
+        searchTerm: result.component?.content?.[0]?.title,
+      })
+        .then((response) => setImageUrls1({ images: response.data.results }))
+        .catch((error) => console.error(error));
+      fetchUnsplashImages({
+        searchTerm: result.component?.content?.[1]?.title,
+      })
+        .then((response) => setImageUrls2({ images: response.data.results }))
+        .catch((error) => console.error(error));
+      fetchUnsplashImages({
+        searchTerm: result.component?.content?.[2]?.title,
+      })
+        .then((response) => setImageUrls3({ images: response.data.results }))
+        .catch((error) => console.error(error));
+    }
+  }, [result, setImageUrls1, setImageUrls2, setImageUrls3]);
+  
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages]);
+
   async function onSubmit(event){
     event.preventDefault();
-    setComponentRequested(true);
     console.log(componentInput);
     const response = await fetch("http://localhost:3001/api", {
         method: "POST",
@@ -65,32 +89,38 @@ export default function ModalForm({
         },
         body: JSON.stringify({ component: componentInput }),
     });
-   // console.log("response.body" + response.body);
     const data = await response.json();
-    console.log(data.result)
-    const objResult = JSON.parse(data.result+'}}');
+    const objResult = JSON.parse(data.result)
+    setDataJson(objResult);
+    const cleanedComponent = JSON.parse(JSON.stringify(objResult.component));
     setResult({
-        ...result,
-        theme: objResult.theme,
-        component: objResult.component,
-    });
-    
+      ...result,
+      theme: objResult.theme,
+      colorScheme: objResult.colorScheme,
+      component: cleanedComponent,
+    })
+    setComponentRequested(true);
     setComponentInput("");
+  
+
+    // useEffect(() => {
+    //   if(result.component.type == "HeroSectionComponent")
+    //   {
+    //     fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: result?.theme});
+    //   }
+    //   else if(result.component.type == "VerticalCardComponent" || result.component.type == "HorizontalCardComponent")
+    //   {
+    //     fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: result?.component?.content?.[0]?.title});
+    //     fetchUnsplashImages({imageUrls: imageUrls2, setImageUrls: setImageUrls2, searchTerm: result?.component?.content?.[1]?.title});
+    //     fetchUnsplashImages({imageUrls: imageUrls3, setImageUrls: setImageUrls3, searchTerm: result?.component?.content?.[2]?.title});
+    //   }
+    // }, [result.component.type, result.theme, result.component.content]);
+  
 }
 
   const cancelButtonRef = useRef(null)
-
-  if(dataFake.component.type == "HeroSectionComponent")
-  {
-    fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: dataFake?.theme});
-  }
-  else if(dataFake.component.type == "VerticalCardComponent" || dataFake.component.type == "HorizontalCardComponent")
-  {
-    fetchUnsplashImages({imageUrls: imageUrls1, setImageUrls: setImageUrls1, searchTerm: dataFake?.component?.content?.[0]?.title});
-    fetchUnsplashImages({imageUrls: imageUrls2, setImageUrls: setImageUrls2, searchTerm: dataFake?.component?.content?.[1]?.title});
-    fetchUnsplashImages({imageUrls: imageUrls3, setImageUrls: setImageUrls3, searchTerm: dataFake?.component?.content?.[2]?.title});
-  }
-
+  let dataFake = JSON.parse(dataJson2);
+  
   return (
     <Transition.Root show={showModalForm} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setShowModalForm}>
@@ -175,7 +205,69 @@ export default function ModalForm({
                     />
                   </div>
                 </div>
-
+                
+                {/* <select className="w-full col-span-2">
+                  <>
+                {
+                  availableComponents.map((availableComponent)=>{
+                    <option value={availableComponent.value}>{availableComponent.label}</option>
+                  })
+                }
+                </>
+                </select> */}
+                  <div className="col-span-2">
+                <Listbox value={selectedComponent} onChange={setSelectedComponent} >
+        <div className="relative mt-1">
+          <Listbox.Button className="relative w-full h-12 cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left drop-shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+            <span className="block truncate">{selectedComponent.label}</span>
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+              <ChevronUpDownIcon
+                className="h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </span>
+          </Listbox.Button>
+          <Transition
+            as={Fragment}
+            leave="transition ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              {availableComponents.map((availableComponent, availableComponentIdx) => (
+                <Listbox.Option
+                  key={availableComponentIdx}
+                  className={({ active }) =>
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                      active ? 'bg-teal-100 text-gray-900 font-semibold' : 'text-gray-700'
+                    }`
+                  }
+                  value={availableComponent}
+                >
+                  {({ selectedComponent }) => (
+                    <>
+                      <span
+                        className={`block truncate ${
+                          selectedComponent ? 'font-semibold' : 'font-normal'
+                        }`}
+                      >
+                    
+                        {availableComponent.label}
+                      </span>
+                      {selectedComponent ? (
+                        <span className="text-teal-600">
+                          <CheckCircleIcon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
+                  )}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          </Transition>
+        </div>
+      </Listbox>
+      </div>
                 
 
                 <div className="sm:col-span-2">

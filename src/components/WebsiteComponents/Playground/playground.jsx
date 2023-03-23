@@ -10,7 +10,9 @@ import ModalForm from "./playgroundModalForm";
 import PlaygroundEditor from "./playgroundEditor";
 
 import './playground.css';
-import dataFake from './dataFake.json';
+//import dataFake from './dataFake.json';
+import { dataJson2 } from "./playgroundEditor";
+let dataFake = JSON.parse(dataJson2);
 
 function Playground() {
  // const [data, setData] = useState(null);
@@ -19,34 +21,39 @@ function Playground() {
   const [imageUrls2, setImageUrls2] = useState({images: []});
   const [imageUrls3, setImageUrls3] = useState({images: []});
   const [componentInput, setComponentInput] = useState("");
+  const [dataJson, setDataJson] = useState({});
+  
+
   const [result, setResult] = useState({
     theme: "",
-    component: [{}],
-  })
-  const [componentRequested, setComponentRequested] = useState(false);
+    colorScheme: "",
+    component: {},
+  });
 
-  async function onSubmit(event){
-        event.preventDefault();
-        setComponentRequested(true);
-        console.log(componentInput);
-        const response = await fetch("http://localhost:3001/api", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ component: componentInput }),
-        });
-        const data = await response.json();
-        console.log(data.result)
-        const objResult = JSON.parse(data.result+'}}');
-        setResult({
-            ...result,
-            theme: objResult.theme,
-            component: objResult.component,
-        });
+  const [componentRequested, setComponentRequested] = useState(false);
+  console.log('resultOriginal'+ result)
+  // async function onSubmit(event){
+  //       event.preventDefault();
+  //       setComponentRequested(true);
+  //       console.log(componentInput);
+  //       const response = await fetch("http://localhost:3001/api", {
+  //           method: "POST",
+  //           headers: {
+  //               "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({ component: componentInput }),
+  //       });
+  //       const data = await response.json();
+  //      // console.log(data.result)
+  //       const objResult = JSON.parse(data.result+'}}');
+  //       setResult({
+  //           ...result,
+  //           theme: objResult.theme,
+  //           component: objResult.component,
+  //       });
         
-        setComponentInput("");
-    }
+  //       setComponentInput("");
+  //   }
 
 //       .then((res) => res.json())
 //       .then((data) => setData(data))
@@ -158,6 +165,12 @@ function Playground() {
           imageUrls3={imageUrls3}
           setImageUrls3={setImageUrls3}
           searchTerm={dataFake?.theme}
+          dataJson={dataJson}
+          setDataJson={setDataJson}
+          result={result}
+          setResult={setResult}
+          componentRequested={componentRequested}
+          setComponentRequested={setComponentRequested}
         />
           <div className="p-6 w-full h-full">
 
@@ -165,6 +178,10 @@ function Playground() {
                 imageUrls1={imageUrls1}
                 imageUrls2={imageUrls2}
                 imageUrls3={imageUrls3}
+                dataJson={dataJson}
+                result={result}
+                setResult={setResult}
+                componentRequested={componentRequested}
                />
             {/* <CodeBracketIcon className="h-8 w-8 text-white bg-gray-800 p-2 my-3 rounded-lg font-bold"/> */}
             {/* <div id="output" className="w-full h-full rounded-xl flex items-center justify-center border-2 border-gray-300 border-dashed hover:border-teal-400">
@@ -182,9 +199,9 @@ function Playground() {
             </div> */}
           </div>
           {/* <p>{!result ? "Loading..." : result.theme}</p> */}
-          <div>{result.theme}</div>
+          {/* <div>{result.theme}</div>
           <div>{result.component && result.component.type}</div>
-          {(result.component && result.component.content && result.component.content[0]) ? <div>result.component.content[0].title</div> : <div></div>}
+          {(result.component && result.component.content && result.component.content[0]) ? <div>result.component.content[0].title</div> : <div></div>} */}
       </div>
     </div>
     </HelmetProvider>

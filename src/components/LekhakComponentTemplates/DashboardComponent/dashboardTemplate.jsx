@@ -114,7 +114,7 @@ export default function DashboardTemplate() {
                         alt=""
                       />
                       <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
-                        <span className="sr-only">Open user menu for </span>Alice Doe
+                        <span className="sr-only">Open user menu for </span>Account Details
                       </span>
                       <ChevronDownIcon
                         className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"

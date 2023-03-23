@@ -4,6 +4,8 @@ import imageUrls1 from './imageUrlsOne.json';
 import imageUrls2 from './imageUrlsTwo.json';
 import imageUrls3 from './imageUrlsThree.json';
 
+
+
 function SingleVerticalCardTemplate({imageUrls, idx}){
   let selectedColor = data.colorScheme ? data.colorScheme : "black";
     return(
@@ -17,7 +19,7 @@ function SingleVerticalCardTemplate({imageUrls, idx}){
                     <img
                       src={imageUrls.images[1].urls.raw}
                       alt=""
-                      className="h-72 w-full rounded-t-lg"
+                      className="h-72 w-full rounded-t-lg object-cover"
                     />
                     </div>
                   )
@@ -26,6 +28,7 @@ function SingleVerticalCardTemplate({imageUrls, idx}){
                       <img
                         src="https://images.unsplash.com/photo-1536566482680-fca31930a0bd"
                         alt=""
+                        className="h-72 w-full rounded-t-lg object-cover"
                       />
                     </div>
                   )
@@ -36,14 +39,14 @@ function SingleVerticalCardTemplate({imageUrls, idx}){
             <div className="flex-auto p-6">
               <div className="flex flex-wrap">
                 {/* title */}
-                {data.component.content[idx].title && ( 
+                {data?.component?.content?.[idx]?.title && ( 
                   <h1 className="flex-auto text-lg font-semibold text-slate-900">
                     {data.component.content[idx].title}
                   </h1>
                 )}
                
                 {/* text body */}
-                {data.component.content[idx].body && (
+                {data?.component?.content?.[idx]?.body && (
                   <div className="w-full flex-none text-sm font-medium text-slate-500 mt-2">
                     {data.component.content[idx].body}
                   </div>
@@ -56,7 +59,7 @@ function SingleVerticalCardTemplate({imageUrls, idx}){
               <div className="flex space-x-4 mx-auto place-items-end text-sm font-medium">
                 {/* calls to action */}
                 <div className="flex-auto flex space-x-4">
-                {data.component.content[idx].callsToAction[0] && (
+                {data?.component?.content?.[idx]?.callsToAction[0] && (
                   <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" 
                   type="submit"
                   style={{
@@ -65,7 +68,7 @@ function SingleVerticalCardTemplate({imageUrls, idx}){
                     {data.component.content[idx].callsToAction[0]}
                   </button>
                 )}
-                {data.component.content[idx].callsToAction[1] && (
+                {data?.component?.content?.[idx]?.callsToAction[1] && (
                   <button 
                   className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900" 
                   type="button"
