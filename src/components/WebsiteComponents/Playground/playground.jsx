@@ -164,7 +164,6 @@ function Playground() {
           setImageUrls2={setImageUrls2}
           imageUrls3={imageUrls3}
           setImageUrls3={setImageUrls3}
-          searchTerm={dataFake?.theme}
           dataJson={dataJson}
           setDataJson={setDataJson}
           result={result}

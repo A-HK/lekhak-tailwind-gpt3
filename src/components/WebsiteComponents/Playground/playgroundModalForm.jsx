@@ -87,7 +87,7 @@ export default function ModalForm({
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ component: componentInput }),
+        body: JSON.stringify({ component: componentInput, componentType: selectedComponent }),
     });
     const data = await response.json();
     const objResult = JSON.parse(data.result)

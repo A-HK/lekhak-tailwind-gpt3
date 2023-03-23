@@ -151,11 +151,11 @@ export default function PlaygroundEditor({
     const getInitialMessage = async () => {
     let componentType = "emptyState";
   
-    dataFake.component.type
-      ? componentType = dataFake.component.type 
+    result.component.type
+      ? componentType = result.component.type 
       : componentType = "emptyState";
     
-
+    
     switch(componentType) {
         case "HorizontalCardComponent":
           setTemplateCode(SingleHorizontalCardTemplateCode)
@@ -188,7 +188,7 @@ export default function PlaygroundEditor({
     }
     getInitialMessage();
   
-  }, [])
+  }, [result.component.type])
 
 
     return(
