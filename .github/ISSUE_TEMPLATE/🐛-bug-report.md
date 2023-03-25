@@ -1,7 +1,7 @@
 ---
 name: "\U0001F41B Bug report"
 about: Create a report to help Lekhak improve
-title: ''
+title: "\U0001F41B Bug report : [ BUG ]"
 labels: ''
 assignees: ''
 
