@@ -105,7 +105,7 @@ export default function HeroSection() {
                    Creating Tailwind UI components has never been <span className='underline decoration-teal-400 underline-offset-8'>easier</span>
                     </h1>
                     <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                    Lekhak generates and previews tailwind-styled components for you, all from a simple text prompt. Harnesses the power of GPT-3 and OpenAI Codex.
+                    Lekhak generates and previews tailwind-styled components for you, all from a simple text prompt. Harnesses the capability of the powerful GPT-3 API.
                     </p>
                     <div className="mt-8 flex gap-x-4 sm:justify-center">
                     <a
@@ -186,7 +186,7 @@ export default function HeroSection() {
                         }
                         }
                         />
-                        <button type="button" className="inline-block w-[150px] absolute inset-x-0 bottom-4 mx-auto justify-center px-6 py-2.5 bg-black text-white font-medium text-sm leading-tight rounded-lg shadow-sm hover:drop-shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">Generate <span className='px-1'>✓</span></button> 
+                        <div className="inline-block w-[150px] absolute inset-x-0 bottom-4 mx-auto justify-center px-6 py-2.5 bg-black text-white font-medium text-sm leading-tight rounded-lg shadow-sm transition duration-150 ease-in-out">Generate <span className='px-1'>✓</span></div> 
                   </div>     
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
