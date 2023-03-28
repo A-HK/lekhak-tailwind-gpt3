@@ -5,7 +5,7 @@ import fetchUnsplashImages from './fetchUnsplashImages'
 //import dataFake from './dataFake.json'
 import { dataJson2 } from './playgroundEditor'
 
-import GetGPTCompletion from "../../../utils/getGPTCompletion";
+//import GetGPTCompletion from "../../../utils/getGPTCompletion";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -45,7 +45,6 @@ export default function ModalForm({
   //pass imageurls to playground editor which will in turn append to dataJson or append here to gpt response
   
   const [componentInput, setComponentInput] = useState("");
-  const [strObjResult, setStrObjResult] = useState(``);
   const [selectedComponent, setSelectedComponent] = useState(availableComponents[0]);
   
   const fetchImages = useCallback(() => {
@@ -74,7 +73,7 @@ export default function ModalForm({
         .catch((error) => console.error(error));
     }
   }, [result, setImageUrls1, setImageUrls2, setImageUrls3]);
-  
+
   useEffect(() => {
     fetchImages();
   }, [fetchImages]);
@@ -82,7 +81,7 @@ export default function ModalForm({
   async function onSubmit(event){
     event.preventDefault();
     console.log(componentInput);
-    const response = await fetch("http://localhost:3001/api", {
+    const response = await fetch(`${import.meta.env.VITE_LEKHAK_BACKEND_URL}/api`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -93,15 +92,16 @@ export default function ModalForm({
     const objResult = JSON.parse(data.result)
     setDataJson(objResult);
     const cleanedComponent = JSON.parse(JSON.stringify(objResult.component));
-    setResult({
-      ...result,
-      theme: objResult.theme,
-      colorScheme: objResult.colorScheme,
-      component: cleanedComponent,
-    })
+   // setResult({"theme": "Indian dances", "colorScheme": "purple", "component": {"type": "VerticalCardComponent", "image": true, "content":[{"title":"Bharatnatyam", "body":"Bharatanatyam is one of the oldest and most popular classical dance styles of India. It originated in the temples of Tamil Nadu and is known for its graceful movements, intricate footwork, and expressive hand gestures. Bharatanatyam is typically performed by women and is often accompanied by classical music and singing.", "callsToAction" : ["Watch Performance", "Learn More"]}, {"title":"Kathak", "body":"Kathak is a classical dance style from North India, known for its intricate footwork, rhythmic complexity, and expressive storytelling. It originated in the Mughal courts and combines elements of Indian and Persian dance traditions. Kathak is typically performed by both men and women and is often accompanied by live music and singing.", "callsToAction" : ["Watch Performance", "Learn More"]}, {"title":"Kuchipudi", "body":"Kuchipudi is a classical dance style from Andhra Pradesh, known for its dynamic movements, graceful poses, and intricate footwork. It originated in the temples of South India and combines elements of dance, music, and theatre. Kuchipudi is typically performed by both men and women and is often accompanied by classical music and singing.", "callsToAction" : ["Watch Performance", "Learn More"]}]}})
+   setResult({
+    ...result,
+    theme: objResult.theme,
+    colorScheme: objResult.colorScheme,
+    component: cleanedComponent,
+  })
     setComponentRequested(true);
     setComponentInput("");
-  
+ //   fetchImages();
 
     // useEffect(() => {
     //   if(result.component.type == "HeroSectionComponent")
@@ -188,37 +188,13 @@ export default function ModalForm({
                     />
                   </div>
                 </div> */}
-
-                <div className="sm:col-span-2 pb-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Enter your prompt here
+          <div className="col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 py-1">
+                    Choose your component
                   </label>
-                  <div className="mt-2">
-                    <textarea
-                      name="prompt"
-                      id="prompt"
-                      className="placeholder:text-gray-400 block w-full px-2 h-24 border-gray-300 rounded-md shadow-sm focus:ring-teal-300 focus:border-teal-300 sm:text-sm"
-                      placeholder="Create a grid of vertical cards for multiple food items with images, orange colour scheme..."
-                      onChange={(e)=>{
-                        setComponentInput(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                
-                {/* <select className="w-full col-span-2">
-                  <>
-                {
-                  availableComponents.map((availableComponent)=>{
-                    <option value={availableComponent.value}>{availableComponent.label}</option>
-                  })
-                }
-                </>
-                </select> */}
-                  <div className="col-span-2">
                 <Listbox value={selectedComponent} onChange={setSelectedComponent} >
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full h-12 cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left drop-shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative w-full h-12 cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border-2 border-gray-100 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selectedComponent.label}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
@@ -268,6 +244,33 @@ export default function ModalForm({
         </div>
       </Listbox>
       </div>
+                <div className="sm:col-span-2 pb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Enter your prompt here
+                  </label>
+                  <div className="mt-2">
+                    <textarea
+                      name="prompt"
+                      id="prompt"
+                      className="placeholder:text-gray-400 block w-full px-2 h-24 border-2 border-gray-200 rounded-md shadow-sm focus:ring-teal-300 focus:border-teal-300 sm:text-sm"
+                      placeholder="Create a grid of vertical cards for multiple food items with images, orange colour scheme..."
+                      onChange={(e)=>{
+                        setComponentInput(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                {/* <select className="w-full col-span-2">
+                  <>
+                {
+                  availableComponents.map((availableComponent)=>{
+                    <option value={availableComponent.value}>{availableComponent.label}</option>
+                  })
+                }
+                </>
+                </select> */}
+                
                 
 
                 <div className="sm:col-span-2">
@@ -298,7 +301,9 @@ export default function ModalForm({
                 <button
                   type="submit"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-400 text-base font-medium text-white hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-300 sm:col-start-2 sm:text-sm"
-                  onClick={() => setShowModalForm(false)}
+                  onClick={() => {
+                    setShowModalForm(false);
+                  }}
                 >
                   Submit
                 </button>

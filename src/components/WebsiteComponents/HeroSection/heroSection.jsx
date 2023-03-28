@@ -8,8 +8,6 @@ import { DefaultLoadingManager } from 'three';
 
 import Typewriter from "typewriter-effect";
 
-import PlaneModel from "./Model/Model";
-
 import './heroSection.css';
 
 
@@ -180,8 +178,6 @@ export default function HeroSection() {
                         .typeString("Create a Tailwind card for a potted plant with title, body and CTA button")
                         .pauseFor(1000)
                         .deleteAll()
-                        .typeString("Add a 3D model of a green plant above the title")
-                        .pauseFor(1000)
                         .start();
                         }}
                         options={{

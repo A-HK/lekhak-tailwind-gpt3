@@ -8,7 +8,7 @@ import {
 } from "@codesandbox/sandpack-react";
 import { cobalt2 } from "@codesandbox/sandpack-themes";
 import './playgroundEditor.css';
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
+import { EyeIcon, EyeSlashIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
 
 import ModalTemplateCode from "../../LekhakComponentTemplates/ModalComponent/modalTemplate";
 import SingleHorizontalCardTemplateCode from "../../LekhakComponentTemplates/SingleHorizontalCardComponent/singleHorizontalCardTemplate";
@@ -22,10 +22,10 @@ import TestimonialTemplateCode from "../../LekhakComponentTemplates/TestimonialC
 //import dataFake from './dataFake.json';
 import fetchUnsplashImages from "./fetchUnsplashImages";
 import ValidIllustrationCode from "../../../assets/externalImageUrlList";
+import Banner from "./bannerTemplate";
 
 
-
-import getGPTCompletion from "../../../utils/getGPTCompletion";
+//import getGPTCompletion from "../../../utils/getGPTCompletion";
 //import { pickValidImgUrl1, validColours } from "../../../assets/externalImageUrlList";
 
 //import setupReact from './setUpReactEditor'
@@ -47,6 +47,7 @@ export default function App() {
   let selectedColor = data.colorScheme ? data.colorScheme : "#2dd4bf";
 
   return (
+    <>
     <div 
     style={{
       backgroundColor: selectedColor
@@ -61,13 +62,8 @@ export default function App() {
       : <EmptyState />
       }
     </div>
+    </>
     )
-}`;
-
-const TestCode = `import ReactMarkdown from 'react-markdown' 
-
-export default function Test() {
-  return <ReactMarkdown># Hello, *world*!</ReactMarkdown>
 }`;
 
 const EmptyStateCode = `import{
@@ -104,14 +100,19 @@ const EmptyStateCss =`#output{
 
 const GPTResponse = ``
 export default function PlaygroundEditor({
-  imageUrls1, 
+  imageUrls1,
+  setImageUrls1, 
   imageUrls2, 
+  setImageUrls2,
   imageUrls3, 
+  setImageUrls3,
   dataJson,
   result,
   setResult,
   componentRequested,
   setComponentRequested,
+  showModalForm,
+  setShowModalForm,
 })
 {
   const [openCodeEditor, setOpenCodeEditor] = useState(false);
@@ -188,7 +189,7 @@ export default function PlaygroundEditor({
     }
     getInitialMessage();
   
-  }, [result.component.type])
+  }, [result, result.component.type])
 
 
     return(
@@ -196,6 +197,17 @@ export default function PlaygroundEditor({
         <div className="h-full" id="playground-editor">
           {/* <img src={validImgUrl} className="h-52"/> */}
           {/* {console.log(dataJson)} */}
+          <div>
+          <button
+              type="button"
+              className="inline-block mr-4 rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-gray-800 shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+              onClick={()=>{setShowModalForm(true)}}
+          >
+                Create New Component
+          
+              <PlusCircleIcon className="h-5 w-5 ml-1.5 mb-0.5 inline-block text-white font-bold"/>
+        
+          </button>
           <button 
             type="button"
             onClick={()=>{setOpenCodeEditor(!openCodeEditor);}}
@@ -206,6 +218,8 @@ export default function PlaygroundEditor({
             : <span><p className="align-middle inline-block">Open Code Editor</p><EyeIcon className="h-4 w-4 ml-2 inline-block"/></span>
             }
           </button>
+          </div>
+          <Banner />
             <SandpackProvider 
             template="react"
             files={{
@@ -241,11 +255,10 @@ export default function PlaygroundEditor({
               "/illustrations.js": {
                 code: ValidIllustrationCode,
                 hidden: !showIllustrationUrlsFile,
-              }
+              },
             }}
             customSetup={{
               dependencies: {
-                "react-markdown": "latest",
                 "@headlessui/react": "^1.7.7",
                 "@heroicons/react": "^2.0.13",
               },
@@ -262,7 +275,7 @@ export default function PlaygroundEditor({
             <SandpackThemeProvider 
               theme={cobalt2}
              >
-              <SandpackLayout style={{borderStyle: "none", borderRadius: "8px"}}>
+              <SandpackLayout style={{borderStyle: "none"}}>
                 
                 <SandpackCodeEditor
                 style={{minHeight: 850, maxWidth: 600, display: `${openCodeEditor ? "flex" : "none"}`}}/> {/* display: none */}

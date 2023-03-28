@@ -12,6 +12,7 @@ import PlaygroundEditor from "./playgroundEditor";
 import './playground.css';
 //import dataFake from './dataFake.json';
 import { dataJson2 } from "./playgroundEditor";
+
 let dataFake = JSON.parse(dataJson2);
 
 function Playground() {
@@ -32,67 +33,7 @@ function Playground() {
 
   const [componentRequested, setComponentRequested] = useState(false);
   console.log('resultOriginal'+ result)
-  // async function onSubmit(event){
-  //       event.preventDefault();
-  //       setComponentRequested(true);
-  //       console.log(componentInput);
-  //       const response = await fetch("http://localhost:3001/api", {
-  //           method: "POST",
-  //           headers: {
-  //               "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({ component: componentInput }),
-  //       });
-  //       const data = await response.json();
-  //      // console.log(data.result)
-  //       const objResult = JSON.parse(data.result+'}}');
-  //       setResult({
-  //           ...result,
-  //           theme: objResult.theme,
-  //           component: objResult.component,
-  //       });
-        
-  //       setComponentInput("");
-  //   }
 
-//       .then((res) => res.json())
-//       .then((data) => setData(data))
-//       .then((data) => {
-//         const objResult = JSON.parse(data.result); //to convert string to JSON object
-//         setResult({
-//             ...result,
-//            theme: objResult.theme,
-//            component: objResult.component,
-//         });
-//         console.log(result);
-//     });
-//   };
-//   async function onSubmit(event) {
-//     event.preventDefault();
-//     const response = await fetch("/api/generate", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ animal: animalInput }),
-//     });
-//     const data = await response.json();
-//     //console.log(typeof(data.result)); // string
-//     const objResult = JSON.parse(data.result); //to convert string to JSON object
-//     setResult({
-//         ...result,
-//         slideNum: objResult.slideNum,
-//         slides: objResult.slides,
-//     });
-//     //console.log(data.result); 
-    
-    
-//     console.log(objResult);
-//     console.log(typeof(objResult));
-//     console.log(objResult.slides);
-//     setAnimalInput("");
-//   }
-  
   return (
     <>
     <HelmetProvider>
@@ -132,7 +73,7 @@ function Playground() {
           <h1 className="inline-block p-2 text-3xl font-black tracking-wide">Playground <sup className="font-semibold bg-teal-400 text-xs px-2 text-white rounded-lg">beta</sup></h1>
         </div>
         <div className="flex flex-row items-center justify-end">
-          <div>
+          {/* <div>
             <button
               type="button"
               className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-gray-800 shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
@@ -143,14 +84,17 @@ function Playground() {
               <PlusCircleIcon className="h-5 w-5 ml-1.5 mb-0.5 inline-block text-white font-bold"/>
         
             </button>
-            </div>
-            <div>
-            <a
-              href="/"
-              className="inline-block px-6 py-2 text-sm font-semibold leading-6 underline underline-offset-4 decoration-1"
-            >
-              Back to Home
-            </a>
+            </div> */}
+            <div className="mt-4">
+              <a
+                href="/"
+                className="inline-block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-white bg-black shadow-md ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+              >
+                Back to Home
+                <span className="px-1 text-white font-bold" aria-hidden="true">
+                  &rarr;
+                </span>
+              </a>
             </div>
           </div>
       </header>
@@ -172,11 +116,15 @@ function Playground() {
           setComponentRequested={setComponentRequested}
         />
           <div className="p-6 w-full h-full">
-
               <PlaygroundEditor
+                showModalForm={showModalForm}
+                setShowModalForm={setShowModalForm}
                 imageUrls1={imageUrls1}
+                setImageUrls1={setImageUrls1}
                 imageUrls2={imageUrls2}
+                setImageUrls2={setImageUrls2}
                 imageUrls3={imageUrls3}
+                setImageUrls3={setImageUrls3}
                 dataJson={dataJson}
                 result={result}
                 setResult={setResult}

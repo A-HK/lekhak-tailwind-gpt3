@@ -62,8 +62,8 @@ const components = [
 ]
 const callsToAction = [
   { name: 'Watch Demo', href: '#', icon: PlayCircleIcon, description: `Learn how to navigate Lekhak to get the most out of it.` },
-  { name: 'Request Feature', href: '#', icon: FlagIcon, description: `Want to see a specific type of component that's not already here? Ask and you shall receive.`  },
-  { name: 'Report Bug', href: '#', icon: BugAntIcon, description: `Complaints, compliments or suggestions? Feel free to leave your feedback here.` },
+  { name: 'Request Feature', href: 'https://github.com/A-HK/lekhak-tailwind-gpt3/issues/new?assignees=&labels=&template=%F0%9F%9A%80-feature-request.md&title=%F0%9F%9A%80+Feature+request+%3A+%5B+FEATURE+NAME+%5D', icon: FlagIcon, description: `Want to see a specific type of component that's not already here? Ask and you shall receive.`  },
+  { name: 'Report Bug', href: 'https://github.com/A-HK/lekhak-tailwind-gpt3/issues/new?assignees=&labels=&template=%F0%9F%90%9B-bug-report.md&title=%F0%9F%90%9B+Bug+report+%3A+%5B+BUG+%5D', icon: BugAntIcon, description: `Complaints, compliments or suggestions? Feel free to leave your feedback here.` },
 ]
 
 const recentPosts = [

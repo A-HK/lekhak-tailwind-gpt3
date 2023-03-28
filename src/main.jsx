@@ -7,7 +7,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./error-page";
-import Example from './components/WebsiteComponents/Example/example';
 import Playground from './components/WebsiteComponents/Playground/playground';
 import Relevance from './components/WebsiteComponents/Relevance/relevance';
 import HeroSectionSample from './components/LekhakComponentTemplates/HeroSectionComponent/heroSectionSample';
@@ -22,11 +21,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/example",
-    element: <Example />,
     errorElement: <ErrorPage />,
   },
   {

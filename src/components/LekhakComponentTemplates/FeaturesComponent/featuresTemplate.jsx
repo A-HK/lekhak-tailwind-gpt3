@@ -7,46 +7,6 @@ import data from './data.json';
 const FeatureBlockOneIcons = [{icon: <GlobeAltIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <ChartPieIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <BoltIcon className="h-6 w-6" aria-hidden="true"/>}]
 const FeatureBlockTwoIcons = [{icon: <FlagIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <CubeIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <DocumentCheckIcon className="h-6 w-6" aria-hidden="true"/>}]
 
-const transferFeatures = [
-  {
-    id: 1,
-    name: 'Collaborate in real-time',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: GlobeAltIcon,
-  },
-  {
-    id: 2,
-    name: 'Access files with one click',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: DocumentCheckIcon,
-  },
-  {
-    id: 3,
-    name: 'Gain instant feedback',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: BoltIcon,
-  },
-]
-const communicationFeatures = [
-  {
-    id: 1,
-    name: 'Mobile notifications',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: FlagIcon,
-  },
-  {
-    id: 2,
-    name: 'Reminder emails',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: CubeIcon,
-  },
-]
-
 export default function FeaturesTemplate() {
   const [validImgUrl1, setValidImgUrl1] = useState("");
   const [validImgUrl2, setValidImgUrl2] = useState("");

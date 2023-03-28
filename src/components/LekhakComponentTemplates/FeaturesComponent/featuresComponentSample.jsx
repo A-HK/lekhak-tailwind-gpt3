@@ -1,56 +1,29 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
+import { useState, useEffect } from 'react';
+import { DocumentCheckIcon, GlobeAltIcon, ChartPieIcon, BoltIcon, CubeIcon, FlagIcon } from '@heroicons/react/24/outline';
 import AltNavBar from '../../WebsiteComponents/NavBar/altNavBar'
 
-const data = {"theme": "travel", "colorScheme": "teal", "component": {"type": "HeroSectionComponent", "image": "true", "content": [{"title": "Discover the world with us", "body":  "Embark on a journey filled with unforgettable experiences and make memories that will last a lifetime. Our team of travel experts is here to guide you every step of the way.", "topTag": "Your Adventure Awaits", "nav": ["Book a Trip", "Top Destinations", "Explore Offers", "About Us"], "callsToAction": ["Get Started", "Know More"]}]}}
+const data = {"theme": "Startup VC Company", "colorScheme": "red", "component": {"type": "FeaturesSectionComponent", "image": true, "content":[{"header": "Unlock the potential of your startup", "subHeader": "Our VC company is dedicated to helping startups succeed. With our expertise and resources, you can build the future of your dreams. Get started with us today.", "featureBlocks": [{"title" : "Expert Advice", "titleDesc": "Receive expert advice from our experienced team on topics like market research, customer acquisition, and product development.","subPoints": [{"id": 0, "point": "Strategic Planning", "pointDesc": "Develop a comprehensive strategy to make the most of your resources and reach your goals."},{"id": 1, "point": "Financial Modeling", "pointDesc": "Navigate the complexities of financial modeling and optimize your budget."},{"id": 2, "point": "Partnership Opportunities", "pointDesc": "Find the right partners to help you grow and succeed."}] },{"title" : "Dedicated Resources", "titleDesc": "Take advantage of our dedicated resources to support your startup.","subPoints": [{"id": 0, "point": "Funding", "pointDesc": "Access our network of investors and secure the funding you need to get off the ground."},{"id": 1, "point": "Mentorship", "pointDesc": "Get advice from experienced entrepreneurs and learn from their successes and failures."},{"id": 2, "point": "Networking", "pointDesc": "Expand your network and make valuable business connections."}]}]}]}}
 
 
-import { ChatBubbleBottomCenterIcon, GlobeAltIcon, BoltIcon, EnvelopeIcon, CurrencyRupeeIcon } from '@heroicons/react/24/outline';
-
-const transferFeatures = [
-  {
-    id: 1,
-    name: 'Competitive exchange rates',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: GlobeAltIcon,
-  },
-  {
-    id: 2,
-    name: 'No hidden fees',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: CurrencyRupeeIcon,
-  },
-  {
-    id: 3,
-    name: 'Transfers are instant',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: BoltIcon,
-  },
-]
-const communicationFeatures = [
-  {
-    id: 1,
-    name: 'Mobile notifications',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ChatBubbleBottomCenterIcon,
-  },
-  {
-    id: 2,
-    name: 'Reminder emails',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: EnvelopeIcon,
-  },
-]
+const FeatureBlockOneIcons = [{icon: <GlobeAltIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <ChartPieIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <BoltIcon className="h-6 w-6" aria-hidden="true"/>}]
+const FeatureBlockTwoIcons = [{icon: <FlagIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <CubeIcon className="h-6 w-6" aria-hidden="true"/>}, {icon: <DocumentCheckIcon className="h-6 w-6" aria-hidden="true"/>}]
 
 function FeaturesTemplate() {
+  const [validImgUrl1, setValidImgUrl1] = useState("");
+  const [validImgUrl2, setValidImgUrl2] = useState("");
+
+  useEffect(()=>{
+    setValidImgUrl1('https://illustrations.popsy.co/' + data.colorScheme + '/man-riding-a-rocket.svg');
+    setValidImgUrl2('https://illustrations.popsy.co/' + data.colorScheme + '/falling.svg');
+    console.log('Image URL 1 sourced from:' + validImgUrl1);
+    console.log('Image URL 2 sourced from:' + validImgUrl2);
+    }, [])
+
+
+
   return (
-    <div className="py-16 px-6 bg-gray-50 overflow-hidden rounded-lg">
+    <div className="py-16 px-6 bg-gray-50 overflow-hidden">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
         <svg
           className="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4"
@@ -76,39 +49,79 @@ function FeaturesTemplate() {
         </svg>
 
         <div className="relative">
-          <h2 className="underline underline-offset-8 decoration-amber-500 text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 lg:text-5xl">
-            A better way to send money
-          </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in,
-            accusamus quisquam.
-          </p>
+          {data?.component?.content?.[0]?.header
+            ? (
+                <h2 className="text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 lg:text-5xl">
+                {data.component.content[0].header}
+                </h2>
+              )
+            : (
+                <h2 className="text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 lg:text-5xl">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit
+                </h2>
+              )
+          }
+          
+         {data?.component?.content?.[0]?.subHeader
+          ? (
+              <p className="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-500">
+              {data.component.content[0].subHeader}
+              </p>
+            )
+          : (
+              <p className="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-500">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in,
+              accusamus quisquam.
+              </p>
+            )
+          }
         </div>
-
-        <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+        {data?.component?.content?.[0]?.featureBlocks[0] &&
+        ( <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
-            <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">
-              Transfer funds world-wide
-            </h3>
-            <p className="mt-3 text-md text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores
-              officia assumenda aliquam laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere.
-              Totam, velit.
-            </p>
-
-            <dl className="mt-10 space-y-10">
-              {transferFeatures.map((item) => (
+            {data?.component?.content?.[0]?.featureBlocks?.[0]?.title
+              ? (
+                  <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">
+                    {data.component.content[0].featureBlocks[0].title}
+                  </h3>
+                )
+              : (
+                <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">
+                  Lorem ipsum
+                </h3>
+              )
+            }
+            
+            {data?.component?.content?.[0]?.featureBlocks?.[0]?.titleDesc
+              ? (
+                  <p className="mt-3 text-md text-gray-500">
+                  {data.component.content[0].featureBlocks[0].titleDesc}
+                  </p>
+                )
+              : (
+                <p className="mt-3 text-md text-gray-500">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores
+                  officia assumenda aliquam laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere.
+                  Totam, velit.
+                </p>
+              )
+            }
+            
+            {data?.component?.content?.[0]?.featureBlocks?.[0]?.subPoints &&
+            ( <dl className="mt-10 space-y-10">
+              {data.component.content[0].featureBlocks[0].subPoints.map((item) => (
                 <div key={item.id} className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
-                      <item.icon className="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p className="underline underline-offset-4 decoration-amber-500 ml-16 text-md font-semibold tracking-tight leading-6 text-gray-900">{item.name}</p>
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
+                    {FeatureBlockOneIcons[item.id].icon}
+                  </div>
+                    <p className="ml-16 text-md font-semibold tracking-tight leading-6 text-gray-900">{item.point}</p>
                   </dt>
-                  <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">{item.pointDesc}</dd>
                 </div>
               ))}
-            </dl>
+            </dl> )
+              }
           </div>
 
           <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
@@ -135,13 +148,13 @@ function FeaturesTemplate() {
             </svg>
             <img
               className="relative mx-auto"
-              width={490}
-              src="https://illustrations.popsy.co/amber/app-launch.svg"
+              width={450}
+              src={validImgUrl1}
               alt=""
             />
           </div>
         </div>
-
+        )}
         <svg
           className="hidden lg:block absolute right-full transform translate-x-1/2 translate-y-12"
           width={404}
@@ -164,29 +177,44 @@ function FeaturesTemplate() {
           </defs>
           <rect width={404} height={784} fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
         </svg>
-
-        <div className="relative mt-12 sm:mt-16 lg:mt-24">
+        {data?.component?.content?.[0]?.featureBlocks?.[1] &&
+        ( <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="lg:col-start-2">
-              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">Always in the loop</h3>
-              <p className="mt-3 text-md text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
-                cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
-              </p>
-
-              <dl className="mt-10 space-y-10">
-                {communicationFeatures.map((item) => (
+            {data?.component?.content?.[0]?.featureBlocks?.[1]?.title
+              ? <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">{data.component.content[0].featureBlocks[1].title}</h3>
+              : <h3 className="text-xl font-extrabold text-gray-900 tracking-tight lg:text-2xl">Lorem Ipsum</h3>
+            }
+              
+            {data?.component?.content?.[0]?.featureBlocks?.[1]?.titleDesc
+              ? (
+                <p className="mt-3 text-md text-gray-500">
+                  {data.component.content[0].featureBlocks[1].titleDesc}
+                </p>
+                )
+              : (
+                  <p className="mt-3 text-md text-gray-500">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
+                  cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
+                  </p>
+                )
+              }
+              
+            {data?.component?.content?.[0]?.featureBlocks?.[1]?.subPoints &&
+              ( <dl className="mt-10 space-y-10">
+                {data.component.content[0].featureBlocks[1].subPoints.map((item) => (
                   <div key={item.id} className="relative">
                     <dt>
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white">
-                        <item.icon className="h-6 w-6" aria-hidden="true" />
+                        {FeatureBlockTwoIcons[item.id].icon}
                       </div>
-                      <p className="underline underline-offset-4 decoration-amber-500 ml-16 text-md leading-6 font-medium text-gray-900">{item.name}</p>
+                      <p className="ml-16 text-md leading-6 font-semibold text-gray-900">{item.point}</p>
                     </dt>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                    <dd className="mt-2 ml-16 text-base text-gray-500">{item.pointDesc}</dd>
                   </div>
                 ))}
-              </dl>
+              </dl> )
+            }
             </div>
 
             <div className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
@@ -214,13 +242,14 @@ function FeaturesTemplate() {
               </svg>
               <img
                 className="relative mx-auto"
-                width={490}
-                src="https://illustrations.popsy.co/amber/graphic-design.svg"
+                width={380}
+                src={validImgUrl2}
                 alt=""
               />
             </div>
           </div>
         </div>
+        )}
       </div>
     </div>
   )
@@ -252,7 +281,7 @@ export default function FeaturesComponentSample() {
                 <article className="prose lg:prose-md prose-invert">
                     <div className="">
                     <blockquote>
-                        <p>Features section component for a finance startup, orange colour, with images</p>
+                        <p>Create a features section for a startup vc company, red</p>
                     </blockquote>
                     </div>
                     

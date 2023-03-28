@@ -14,19 +14,19 @@ function SingleHorizontalCardTemplate({imageUrls, idx}){
         {data.component.image
           ? imageUrls?.images?.[1]?.urls?.raw 
             ? (
-                <div className="flex-none w-56 h-full relative">
+                <div className="flex-none w-56 relative">
                     <img 
                       src={imageUrls.images[1].urls.raw} 
                       loading="lazy"
-                      className="h-full rounded-l-lg"
+                      className="max-h-64 w-full h-full rounded-l-lg object-cover"
                      />
                 </div>
               )
             : (
-                <div className="flex-none w-48 relative">
+                <div className="flex-none w-56 relative">
                     <img src="https://images.unsplash.com/photo-1536566482680-fca31930a0bd" 
                     loading="lazy"
-                    className="h-full rounded-l-lg" />
+                    className="max-h-64 w-full h-full rounded-l-lg object-cover" />
                 </div>
               )
           : null
