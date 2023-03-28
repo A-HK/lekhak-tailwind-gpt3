@@ -7,10 +7,6 @@ import { dataJson2 } from './playgroundEditor'
 
 //import GetGPTCompletion from "../../../utils/getGPTCompletion";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const availableComponents = [
   {label: 'Hero Section', value: 'HeroSectionComponent'},
   {label: 'Dashboard', value: 'DashboardComponent'},
@@ -20,6 +16,16 @@ const availableComponents = [
   {label: 'Horizontal Card Grid', value: 'HorizontalCardComponent'},
   {label: 'Testimonials', value: 'TestimonialComponent'},
 ]
+
+const promptExamples = {
+  'HeroSectionComponent' : 'Create a hero section for a travel agency in turquoise',
+  'DashboardComponent' : 'Create a dashboard component for a tech company, black',
+  'FeaturesSectionComponent' : 'Create a features section for a food delivery startup, orange',
+  'ModalComponent' : 'Create a modal for confirmation of deleting account, red',
+  'VerticalCardComponent' : 'Create a grid of vertical cards for travel destinations, black',
+  'HorizontalCardComponent' : 'Create a grid of horizontal cards for food items',
+  'TestimonialComponent' : 'Generate a testimonial component for a fitness company, blue'
+}
 
 
 export default function ModalForm({
@@ -253,7 +259,7 @@ export default function ModalForm({
                       name="prompt"
                       id="prompt"
                       className="placeholder:text-gray-400 block w-full px-2 h-24 border-2 border-gray-200 rounded-md shadow-sm focus:ring-teal-300 focus:border-teal-300 sm:text-sm"
-                      placeholder="Create a grid of vertical cards for multiple food items with images, orange colour scheme..."
+                      placeholder={`Example:  ${promptExamples[selectedComponent.value]}`}
                       onChange={(e)=>{
                         setComponentInput(e.target.value);
                       }}
@@ -280,18 +286,18 @@ export default function ModalForm({
                     </fieldset>
 
                   <label className="block text-sm font-medium text-gray-700 pt-4 pb-2 ">
-                    Try one of the below prompts
+                    Copy one of the below prompts
                   </label>
                   <div className="mt-2 grid grid-rows-2 gap-y-4">
-                    <button type="button" className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
+                    <div className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
                         Create a hero section for a food delivery website, orange in colour
-                    </button>
-                    <button type="button" className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
+                    </div>
+                    <div className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
                         Create a feature section for an edtech startup
-                    </button>
-                    <button type="button" className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
+                    </div>
+                    <div className="bg-slate-100 rounded-sm text-sm text-center text-gray-600 font-semibold px-2 py-3 w-full">
                         Create a dashboard component for a financial company, teal
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense} from 'react';
-import { BoltIcon, PlayCircleIcon} from '@heroicons/react/24/outline';
+import { BoltIcon, PlayCircleIcon, ArrowRightCircleIcon} from '@heroicons/react/24/outline';
 
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
