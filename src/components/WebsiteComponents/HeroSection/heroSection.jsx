@@ -91,7 +91,7 @@ export default function HeroSection() {
               <div className='flex items-center'>
                 <div className='px-6'>
                     <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10">
+                        {/* <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10">
                         <span className="text-gray-600">
                             Uhh.. can't I just use ChatGPT? {' '}
                             <a href="/why-though" className="font-semibold text-teal-400 hover:text-teal-500">
@@ -99,7 +99,7 @@ export default function HeroSection() {
                             Read more <span aria-hidden="true">&rarr;</span>
                             </a>
                         </span>
-                        </div>
+                        </div> */}
                     </div>             
                     <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
                    Creating Tailwind UI components has never been <span className='underline decoration-teal-400 underline-offset-8'>easier</span>
